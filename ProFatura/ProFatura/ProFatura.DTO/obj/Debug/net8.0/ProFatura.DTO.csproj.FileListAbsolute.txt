@@ -1,0 +1,11 @@
+C:\Users\Marcelo Rocha\Desktop\Visual Studio Code\Aplicacoes Web\ProFatura\ProFatura.DTO\bin\Debug\net8.0\ProFatura.DTO.deps.json
+C:\Users\Marcelo Rocha\Desktop\Visual Studio Code\Aplicacoes Web\ProFatura\ProFatura.DTO\bin\Debug\net8.0\ProFatura.DTO.dll
+C:\Users\Marcelo Rocha\Desktop\Visual Studio Code\Aplicacoes Web\ProFatura\ProFatura.DTO\bin\Debug\net8.0\ProFatura.DTO.pdb
+C:\Users\Marcelo Rocha\Desktop\Visual Studio Code\Aplicacoes Web\ProFatura\ProFatura.DTO\obj\Debug\net8.0\ProFatura.DTO.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Marcelo Rocha\Desktop\Visual Studio Code\Aplicacoes Web\ProFatura\ProFatura.DTO\obj\Debug\net8.0\ProFatura.DTO.AssemblyInfoInputs.cache
+C:\Users\Marcelo Rocha\Desktop\Visual Studio Code\Aplicacoes Web\ProFatura\ProFatura.DTO\obj\Debug\net8.0\ProFatura.DTO.AssemblyInfo.cs
+C:\Users\Marcelo Rocha\Desktop\Visual Studio Code\Aplicacoes Web\ProFatura\ProFatura.DTO\obj\Debug\net8.0\ProFatura.DTO.csproj.CoreCompileInputs.cache
+C:\Users\Marcelo Rocha\Desktop\Visual Studio Code\Aplicacoes Web\ProFatura\ProFatura.DTO\obj\Debug\net8.0\ProFatura.DTO.dll
+C:\Users\Marcelo Rocha\Desktop\Visual Studio Code\Aplicacoes Web\ProFatura\ProFatura.DTO\obj\Debug\net8.0\refint\ProFatura.DTO.dll
+C:\Users\Marcelo Rocha\Desktop\Visual Studio Code\Aplicacoes Web\ProFatura\ProFatura.DTO\obj\Debug\net8.0\ProFatura.DTO.pdb
+C:\Users\Marcelo Rocha\Desktop\Visual Studio Code\Aplicacoes Web\ProFatura\ProFatura.DTO\obj\Debug\net8.0\ref\ProFatura.DTO.dll

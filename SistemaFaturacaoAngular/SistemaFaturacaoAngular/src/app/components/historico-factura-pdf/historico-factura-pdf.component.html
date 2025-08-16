@@ -1,0 +1,100 @@
+<div id="all">
+
+    <div class="invoice-wrapper" id="print-area">
+        <div class="invoice">
+            <div class="invoice-container">
+                <div class="invoice-head">
+                    <div class="invoice-head-top">
+                        <div class="invoice-head-top-left text-start">
+                            <h1 id="logo"><span>Pro</span>Fatura</h1>
+                        </div>
+                        <div class="invoice-head-top-right text-end historico">
+                            <h3>Histórico de Facturas</h3>
+                        </div>
+
+                        <div class="invoice-head-top-right text-end relatorio ocultar">
+                            <h3>Relatório de Vendas</h3>
+                        </div>
+                    </div>
+                    <div class="hr"></div>
+                    <div class="invoice-head-middle">
+                        <div class="invoice-head-middle-left text-start">
+                            <p><span class="text-bold">Data</span>: {{dataCorrente}}</p>
+                        </div>
+                    </div>
+                    <div class="hr"></div>
+                    <div class="invoice-head-bottom">
+                        <div class="invoice-head-bottom-left">
+                            <ul>
+                                <li class='text-bold margensCurtas'>Gerada por :</li>
+                                <li class="margens" >{{administradorGerouNome}} - {{administradorGerouBI}}</li>
+                            </ul>
+
+                            <ul class="periodo ocultar">
+                                <li class='text-bold margensCurtas'>Período :</li>
+                                <li class="margens" >{{dataComeco}} - {{dataFim}}</li>
+                            </ul>
+
+                            <ul class="produto ocultar">
+                                <li class='text-bold margensCurtas'>Produto :</li>
+                                <li class="margens" >{{nomeProduto}}</li>
+                            </ul>
+                        </div>
+                        <div class="invoice-head-bottom-right">
+                            <ul class="text-end">
+                                <li class='text-bold margens'>Empresa:</li>
+                                <li>ProFatura</li>
+                                <li>Kifica , Benfica</li>
+                                <li>Rua Conde Nº26</li>
+                                <li class="margens">profatura&commat;gmail.com</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="overflow-view">
+                    <div class="invoice-body">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td class="text-bold">Nº da Factura</td>
+                                    <td class="text-bold">Data</td>
+                                    <td class="text-bold">Cliente</td> 
+                                    <td class="text-bold">Funcionário</td>
+                                    <td class="text-bold quantidade ocultar">Quantidade</td>
+                                    <td class="text-bold">Total</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <!--<tr>
+                                    <td>1</td>
+                                    <td>Creating a website design</td>
+                                    <td>$50.00</td>
+                                    <td>10</td>
+                                    <td class="text-end">$500.00</td>
+                                </tr>-->
+
+                                <tr *ngFor="let factura of dadosHistoricoFactura">
+                                    <td>{{factura.numeroFatura}}</td>
+                                    <td>{{factura.dataFatura}}</td>
+                                    <td>{{factura.nomeCliente}} - {{factura.telemovelCliente}}</td>
+                                    <td>{{factura.nomeFuncionario}} - {{factura.BIFuncionario}}</td>
+                                    <td [ngClass]="{'ocultar': shouldHideQuantidade()}">{{factura.quantidade}}</td>
+                                    <td>{{factura.total}} Kz</td>
+                                </tr>
+                               
+                               
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="invoice-foot text-center">
+                    <p><span class="text-bold text-center">NOTA:&nbsp;</span>Isto é uma factura automatizada e não
+                        requer nenhuma assinatura física.</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

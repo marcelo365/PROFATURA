@@ -1,0 +1,57 @@
+C:\Users\Marcelo Rocha\Desktop\Visual Studio Code\Aplicacoes Web\ProFatura\ProFatura.DAL\bin\Debug\net8.0\ProFatura.DAL.deps.json
+C:\Users\Marcelo Rocha\Desktop\Visual Studio Code\Aplicacoes Web\ProFatura\ProFatura.DAL\bin\Debug\net8.0\ProFatura.DAL.dll
+C:\Users\Marcelo Rocha\Desktop\Visual Studio Code\Aplicacoes Web\ProFatura\ProFatura.DAL\bin\Debug\net8.0\ProFatura.DAL.pdb
+C:\Users\Marcelo Rocha\Desktop\Visual Studio Code\Aplicacoes Web\ProFatura\ProFatura.DAL\bin\Debug\net8.0\ProFatura.Model.dll
+C:\Users\Marcelo Rocha\Desktop\Visual Studio Code\Aplicacoes Web\ProFatura\ProFatura.DAL\bin\Debug\net8.0\ProFatura.Model.pdb
+C:\Users\Marcelo Rocha\Desktop\Visual Studio Code\Aplicacoes Web\ProFatura\ProFatura.DAL\obj\Debug\net8.0\ProFatura.DAL.csproj.AssemblyReference.cache
+C:\Users\Marcelo Rocha\Desktop\Visual Studio Code\Aplicacoes Web\ProFatura\ProFatura.DAL\obj\Debug\net8.0\ProFatura.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Marcelo Rocha\Desktop\Visual Studio Code\Aplicacoes Web\ProFatura\ProFatura.DAL\obj\Debug\net8.0\ProFatura.DAL.AssemblyInfoInputs.cache
+C:\Users\Marcelo Rocha\Desktop\Visual Studio Code\Aplicacoes Web\ProFatura\ProFatura.DAL\obj\Debug\net8.0\ProFatura.DAL.AssemblyInfo.cs
+C:\Users\Marcelo Rocha\Desktop\Visual Studio Code\Aplicacoes Web\ProFatura\ProFatura.DAL\obj\Debug\net8.0\ProFatura.DAL.csproj.CoreCompileInputs.cache
+C:\Users\Marcelo Rocha\Desktop\Visual Studio Code\Aplicacoes Web\ProFatura\ProFatura.DAL\obj\Debug\net8.0\ProFatur.91CAAC88.Up2Date
+C:\Users\Marcelo Rocha\Desktop\Visual Studio Code\Aplicacoes Web\ProFatura\ProFatura.DAL\obj\Debug\net8.0\ProFatura.DAL.dll
+C:\Users\Marcelo Rocha\Desktop\Visual Studio Code\Aplicacoes Web\ProFatura\ProFatura.DAL\obj\Debug\net8.0\refint\ProFatura.DAL.dll
+C:\Users\Marcelo Rocha\Desktop\Visual Studio Code\Aplicacoes Web\ProFatura\ProFatura.DAL\obj\Debug\net8.0\ProFatura.DAL.pdb
+C:\Users\Marcelo Rocha\Desktop\Visual Studio Code\Aplicacoes Web\ProFatura\ProFatura.DAL\obj\Debug\net8.0\ref\ProFatura.DAL.dll
+C:\Users\Marcelo Rocha\Desktop\Visual Studio Code\Aplicacoes Web\ProFatura\ProFatura.DAL\bin\Debug\net8.0\ProFatura.DAL.runtimeconfig.json
+C:\Users\Marcelo Rocha\Desktop\Visual Studio Code\Aplicacoes Web\ProFatura\ProFatura.DAL\obj\Debug\net8.0\ProFatura.DAL.genruntimeconfig.cache
+C:\Users\Marcelo Rocha\Desktop\Visual Studio Code\Aplicacoes Web\ProFatura\ProFatura.DAL\bin\Debug\net8.0\Shared.dll
+C:\Users\Marcelo Rocha\Desktop\Visual Studio Code\Aplicacoes Web\ProFatura\ProFatura.DAL\bin\Debug\net8.0\Shared.pdb
+C:\Users\Marcelo Rocha\Desktop\ProFatura\ProFatura\ProFatura.DAL\bin\Debug\net8.0\ProFatura.DAL.deps.json
+C:\Users\Marcelo Rocha\Desktop\ProFatura\ProFatura\ProFatura.DAL\bin\Debug\net8.0\ProFatura.DAL.runtimeconfig.json
+C:\Users\Marcelo Rocha\Desktop\ProFatura\ProFatura\ProFatura.DAL\bin\Debug\net8.0\ProFatura.DAL.dll
+C:\Users\Marcelo Rocha\Desktop\ProFatura\ProFatura\ProFatura.DAL\bin\Debug\net8.0\ProFatura.DAL.pdb
+C:\Users\Marcelo Rocha\Desktop\ProFatura\ProFatura\ProFatura.DAL\bin\Debug\net8.0\ProFatura.Model.dll
+C:\Users\Marcelo Rocha\Desktop\ProFatura\ProFatura\ProFatura.DAL\bin\Debug\net8.0\Shared.dll
+C:\Users\Marcelo Rocha\Desktop\ProFatura\ProFatura\ProFatura.DAL\bin\Debug\net8.0\ProFatura.Model.pdb
+C:\Users\Marcelo Rocha\Desktop\ProFatura\ProFatura\ProFatura.DAL\bin\Debug\net8.0\Shared.pdb
+C:\Users\Marcelo Rocha\Desktop\ProFatura\ProFatura\ProFatura.DAL\obj\Debug\net8.0\ProFatura.DAL.csproj.AssemblyReference.cache
+C:\Users\Marcelo Rocha\Desktop\ProFatura\ProFatura\ProFatura.DAL\obj\Debug\net8.0\ProFatura.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Marcelo Rocha\Desktop\ProFatura\ProFatura\ProFatura.DAL\obj\Debug\net8.0\ProFatura.DAL.AssemblyInfoInputs.cache
+C:\Users\Marcelo Rocha\Desktop\ProFatura\ProFatura\ProFatura.DAL\obj\Debug\net8.0\ProFatura.DAL.AssemblyInfo.cs
+C:\Users\Marcelo Rocha\Desktop\ProFatura\ProFatura\ProFatura.DAL\obj\Debug\net8.0\ProFatura.DAL.csproj.CoreCompileInputs.cache
+C:\Users\Marcelo Rocha\Desktop\ProFatura\ProFatura\ProFatura.DAL\obj\Debug\net8.0\ProFatur.91CAAC88.Up2Date
+C:\Users\Marcelo Rocha\Desktop\ProFatura\ProFatura\ProFatura.DAL\obj\Debug\net8.0\ProFatura.DAL.dll
+C:\Users\Marcelo Rocha\Desktop\ProFatura\ProFatura\ProFatura.DAL\obj\Debug\net8.0\refint\ProFatura.DAL.dll
+C:\Users\Marcelo Rocha\Desktop\ProFatura\ProFatura\ProFatura.DAL\obj\Debug\net8.0\ProFatura.DAL.pdb
+C:\Users\Marcelo Rocha\Desktop\ProFatura\ProFatura\ProFatura.DAL\obj\Debug\net8.0\ProFatura.DAL.genruntimeconfig.cache
+C:\Users\Marcelo Rocha\Desktop\ProFatura\ProFatura\ProFatura.DAL\obj\Debug\net8.0\ref\ProFatura.DAL.dll
+C:\Users\Marcelo Rocha\Desktop\PROFATURA\ProFatura\ProFatura\ProFatura.DAL\bin\Debug\net8.0\ProFatura.DAL.deps.json
+C:\Users\Marcelo Rocha\Desktop\PROFATURA\ProFatura\ProFatura\ProFatura.DAL\bin\Debug\net8.0\ProFatura.DAL.runtimeconfig.json
+C:\Users\Marcelo Rocha\Desktop\PROFATURA\ProFatura\ProFatura\ProFatura.DAL\bin\Debug\net8.0\ProFatura.DAL.dll
+C:\Users\Marcelo Rocha\Desktop\PROFATURA\ProFatura\ProFatura\ProFatura.DAL\bin\Debug\net8.0\ProFatura.DAL.pdb
+C:\Users\Marcelo Rocha\Desktop\PROFATURA\ProFatura\ProFatura\ProFatura.DAL\bin\Debug\net8.0\ProFatura.Model.dll
+C:\Users\Marcelo Rocha\Desktop\PROFATURA\ProFatura\ProFatura\ProFatura.DAL\bin\Debug\net8.0\Shared.dll
+C:\Users\Marcelo Rocha\Desktop\PROFATURA\ProFatura\ProFatura\ProFatura.DAL\bin\Debug\net8.0\ProFatura.Model.pdb
+C:\Users\Marcelo Rocha\Desktop\PROFATURA\ProFatura\ProFatura\ProFatura.DAL\bin\Debug\net8.0\Shared.pdb
+C:\Users\Marcelo Rocha\Desktop\PROFATURA\ProFatura\ProFatura\ProFatura.DAL\obj\Debug\net8.0\ProFatura.DAL.csproj.AssemblyReference.cache
+C:\Users\Marcelo Rocha\Desktop\PROFATURA\ProFatura\ProFatura\ProFatura.DAL\obj\Debug\net8.0\ProFatura.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Marcelo Rocha\Desktop\PROFATURA\ProFatura\ProFatura\ProFatura.DAL\obj\Debug\net8.0\ProFatura.DAL.AssemblyInfoInputs.cache
+C:\Users\Marcelo Rocha\Desktop\PROFATURA\ProFatura\ProFatura\ProFatura.DAL\obj\Debug\net8.0\ProFatura.DAL.AssemblyInfo.cs
+C:\Users\Marcelo Rocha\Desktop\PROFATURA\ProFatura\ProFatura\ProFatura.DAL\obj\Debug\net8.0\ProFatura.DAL.csproj.CoreCompileInputs.cache
+C:\Users\Marcelo Rocha\Desktop\PROFATURA\ProFatura\ProFatura\ProFatura.DAL\obj\Debug\net8.0\ProFatur.91CAAC88.Up2Date
+C:\Users\Marcelo Rocha\Desktop\PROFATURA\ProFatura\ProFatura\ProFatura.DAL\obj\Debug\net8.0\ProFatura.DAL.dll
+C:\Users\Marcelo Rocha\Desktop\PROFATURA\ProFatura\ProFatura\ProFatura.DAL\obj\Debug\net8.0\refint\ProFatura.DAL.dll
+C:\Users\Marcelo Rocha\Desktop\PROFATURA\ProFatura\ProFatura\ProFatura.DAL\obj\Debug\net8.0\ProFatura.DAL.pdb
+C:\Users\Marcelo Rocha\Desktop\PROFATURA\ProFatura\ProFatura\ProFatura.DAL\obj\Debug\net8.0\ProFatura.DAL.genruntimeconfig.cache
+C:\Users\Marcelo Rocha\Desktop\PROFATURA\ProFatura\ProFatura\ProFatura.DAL\obj\Debug\net8.0\ref\ProFatura.DAL.dll

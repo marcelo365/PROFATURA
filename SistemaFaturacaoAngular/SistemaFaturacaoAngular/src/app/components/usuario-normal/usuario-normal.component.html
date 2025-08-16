@@ -1,0 +1,297 @@
+<div class="all">
+
+    <nav>
+        <div class="logo">
+            <a routerLink="/login"><span>Pro</span>Fatura</a>
+            <p (click)="irAlterarSenha()">Alterar Senha</p>
+            <p (click)="irGerarFacturas()">Gerar Facturas</p>
+        </div>
+        <p>Username : <span name="userName" id="username">{{userName}}</span></p>
+    </nav>
+
+
+    <div class="principal">
+
+
+        <!--Visualizar os Produtos-->
+        <div class="bodyVisualizarProdutos">
+            <main class="table" id="customers_table">
+                <section class="table__header">
+                    <h1 (click)="inicializar()">Produtos</h1>
+
+                    <div class="input-group">
+                        <input type="text" name="procurarProdutoInput" [(ngModel)]="procurarProdutoInput" placeholder="Procure por ID, Nome ou Categoria">
+                        <button id="btnPesquisar" (click)="fazerPesquisa()">OK</button>
+                    </div>
+
+                </section>
+
+                <section class="table__body">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th> ID </th>
+                                <th> Nome </th>
+                                <th> Preço </th>
+                                <th> Categoria </th>
+                                <th> Estoque </th>
+                                <th> - </th>
+
+
+                            </tr>
+                        </thead>
+
+                        <tbody class="produtosDisponiveis">
+                            <tr *ngFor="let produto of produtosVisualizar" [id]="produto.produtoID">
+                                <td> {{produto.produtoID}} </td>
+                                <td> {{produto.nome}} </td>
+                                <td> {{produto.preco}} </td>
+                                <td> {{produto.categoria}} </td>
+                                <td> {{produto.quantidadeEmEstoque}} </td>
+                                <td><button id="btnAdicionar" (click)="adicionarProdutoFactura(produto.produtoID)">+</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+            </main>
+        </div>
+
+        <!--Factura-->
+        <div id="container" class="factura">
+
+            <section id="items">
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Preço</th>
+                            <th>Quantidade</th>
+                            <th>Subtotal</th>
+                            <th> - </th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="produtosFactura">
+
+                        <tr *ngFor="let produtoFactura of produtosFactura">
+                            <td>{{produtoFactura.nome}}</td>
+                            <td>{{produtoFactura.preco.toFixed(2)}}</td>
+                            <td>{{produtoFactura.quantidade}}</td>
+                            <td>{{produtoFactura.subtotal.toFixed(2)}} kz</td>
+                            <td> <button id="btnEliminar" (click)="eliminarProdutoFactura(produtoFactura.nome)">-</button> </td>
+                        </tr>
+
+                        <!---->
+                        <tr class="listaApagar ocultar">
+                            <th colspan="5" id="aApagar">A Apagar :</th>
+                        </tr>
+
+                        <tr *ngFor="let produtoFactura of listaApagar">
+                            <td>{{produtoFactura.nome}}</td>
+                            <td>{{produtoFactura.preco.toFixed(2)}}</td>
+                            <td>{{produtoFactura.quantidade}}</td>
+                            <td>{{produtoFactura.subtotal.toFixed(2)}} kz</td>
+                            <td> <button id="btnEliminar" (click)="retornarEliminarProdutoFactura(produtoFactura.nome)">-</button> </td>
+                        </tr>
+                        
+                        <!---->
+                        
+                    </tbody>
+
+                </table>
+                <button class="btnApagar ocultar" (click)="efectuarRemocaoProdutosFactura()">Apagar</button>
+
+            </section>
+
+            <section id="sums">
+
+                <table>
+                    <tbody>
+                        <tr class="amount-total">
+                            <th>Subtotal : </th>
+                            <td>{{subtotalProdutos}} kz</td>
+                        </tr>
+
+                        <tr data-iterate="tax">
+                            <th>Taxa IVA (14%) : </th>
+                            <td>{{taxaIVA}} kz</td>
+                        </tr>
+
+                        <tr>
+                            <th>Total a Pagar : </th>
+                            <td>{{totalProdutos}} Kz</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+                <button class="btnPagar" (click)="irAutenticarCliente()" >Pagar</button>
+                <button (click)="gerarFaturaProForma()">Gerar Factura Proforma</button>
+
+            </section>
+        </div>
+
+        <!--Autenticação para Eliminar Produto da Fatura-->
+        <div class="form ocultar">
+
+            <form>
+                <h2>Autenticação</h2>
+        
+                <label for="">Username : </label>
+                <div>
+                    <input type="text" name="UserNameAdmn" [(ngModel)]="userNameAdmn" placeholder="Digite o seu username" required>
+                </div>
+        
+                <label for="" >Senha : </label>
+                <div>
+                    <input type="password" name="senhaAdmn" [(ngModel)]="senhaAdmn" placeholder="Digite a sua senha" required>
+                </div>
+        
+                <div id="enviar">
+                    <button type="submit" (click)="autenticarRemocao()">Autenticar</button>
+                </div>
+        
+                <div id = "voltar">
+                    <button (click)="voltarFactura()">Voltar</button>
+                </div>
+        
+            </form>
+        
+        </div>
+
+        <!--Opções Pagamento-->
+        <div class="opcoesPagamento form ocultar">
+
+            <form>
+                <h2>Opções de Pagamento</h2>
+        
+                <div id="enviar">
+                    <button class="dinheiro" type="submit" (click)="irPagamentoDinheiro()">Pagamento a Dinheiro</button>
+                </div>
+
+                <div id="enviar">
+                    <button id="multicaixa" type="submit" (click)="efectuarPagamentoMulticaixa()">Pagamento Multicaixa</button>
+                </div>
+        
+                <div id = "voltar" class="divVoltar">
+                    <button class="voltarP" (click)="voltarPagar()">Voltar</button>
+                </div>
+        
+            </form>
+        </div>
+
+        <!--Pagamento a Dinheiro-->
+        <div class="pagamentoDinheiro form ocultar">
+            <form>
+                <h2>Pagamento a Dinheiro</h2>
+
+                <label for="" >Quantia : </label>
+                <div>
+                    <input type="number" name="quantiaPagamentoDinheiro" [(ngModel)]="quantiaPagamentoDinheiro" placeholder="Digite a quantia" required>
+                </div>
+
+                <div id="enviar">
+                    <button class="dinheiro" type="submit" (click)="efectuarPagamentoDinheiro()">OK</button>
+                </div>
+        
+                <div id = "voltar" class="divVoltar">
+                    <button class="voltarP" (click)="voltarPagamentoDinheiro()">Voltar</button>
+                </div>
+            </form>
+        </div>
+
+        <!--Autenticar Cliente-->
+        <div class="autenticarCliente form ocultar">
+            <form>
+                <h2>Autenticação de Cliente</h2>
+        
+                <label for="">Telemóvel : </label>
+                <div>
+                    <input type="number" name="telemovelCliente" [(ngModel)]="telemovelCliente" placeholder="Digite o telemóvel do cliente" required>
+                </div>
+        
+                <div id="enviar">
+                    <button type="submit" (click)="autenticarCliente()">Autenticar</button>
+                </div>
+        
+                <div id = "voltar">
+                    <button (click)="voltarFacturaCliente()">Voltar</button>
+                </div>
+
+                <div id="links">
+                    <p>Cliente não possui registo ? <a id="linkCadastrar" (click)="irCadastrarCliente()">Criar um registo</a></p>
+                </div>
+        
+            </form>
+        </div>
+
+        <!--Cadastrar Cliente-->
+        <div class="cadastrarCliente form ocultar">
+            <form>
+                <h2>Cadastro de Cliente</h2>
+
+                <label for="">Nome Completo : </label>
+                <div>
+                    <input type="text" name="nomeCliente" [(ngModel)]="nomeCliente" placeholder="Digite o nome completo do cliente" required>
+                </div>
+        
+                <label for="">Telemóvel : </label>
+                <div>
+                    <input type="number" name="telemovelCliente" [(ngModel)]="telemovelCliente" placeholder="Digite o telemóvel do cliente" required>
+                </div>
+        
+                <div id="enviar">
+                    <button type="submit" (click)="efectuarCadastroCliente()" >Cadastrar Cliente</button>
+                </div>
+        
+                <div id = "voltar">
+                    <button (click)="voltarAutenticarCliente()">Voltar</button>
+                </div>
+        
+            </form>
+        </div>
+
+        <!--Alterar Senha-->
+        <div class="alterarSenha ocultar">
+            <div class="form">
+                <form>
+                    <h2>Alteração da Senha</h2>
+
+                    <label for="">Senha actual : </label>
+                    <div>
+                        <input type="text" placeholder="Digite a senha actual" name="senhaActual"
+                            [(ngModel)]="senhaActual" required>
+                    </div>
+
+                    <label for="">Nova senha : </label>
+                    <div>
+                        <input type="text" placeholder="Digite a nova senha" name="novaSenha"
+                            [(ngModel)]="novaSenha" required>
+                    </div>
+
+                    <label for="">Confirmação da nova senha : </label>
+                    <div>
+                        <input type="text" placeholder="Confirme a nova senha" name="confirmacaoSenha"
+                            [(ngModel)]="confirmacaoSenha" required>
+                    </div>
+
+                    <div id="enviar">
+                        <button type="submit" (click)="mudarSenha()">Mudar Senha</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+
+
+
+
+</div>

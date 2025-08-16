@@ -1,0 +1,33 @@
+C:\Users\Marcelo Rocha\Desktop\Visual Studio Code\Aplicacoes Web\ProFatura\ProFatura.Model\bin\Debug\net8.0\ProFatura.Model.deps.json
+C:\Users\Marcelo Rocha\Desktop\Visual Studio Code\Aplicacoes Web\ProFatura\ProFatura.Model\bin\Debug\net8.0\ProFatura.Model.dll
+C:\Users\Marcelo Rocha\Desktop\Visual Studio Code\Aplicacoes Web\ProFatura\ProFatura.Model\bin\Debug\net8.0\ProFatura.Model.pdb
+C:\Users\Marcelo Rocha\Desktop\Visual Studio Code\Aplicacoes Web\ProFatura\ProFatura.Model\obj\Debug\net8.0\ProFatura.Model.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Marcelo Rocha\Desktop\Visual Studio Code\Aplicacoes Web\ProFatura\ProFatura.Model\obj\Debug\net8.0\ProFatura.Model.AssemblyInfoInputs.cache
+C:\Users\Marcelo Rocha\Desktop\Visual Studio Code\Aplicacoes Web\ProFatura\ProFatura.Model\obj\Debug\net8.0\ProFatura.Model.AssemblyInfo.cs
+C:\Users\Marcelo Rocha\Desktop\Visual Studio Code\Aplicacoes Web\ProFatura\ProFatura.Model\obj\Debug\net8.0\ProFatura.Model.csproj.CoreCompileInputs.cache
+C:\Users\Marcelo Rocha\Desktop\Visual Studio Code\Aplicacoes Web\ProFatura\ProFatura.Model\obj\Debug\net8.0\ProFatura.Model.dll
+C:\Users\Marcelo Rocha\Desktop\Visual Studio Code\Aplicacoes Web\ProFatura\ProFatura.Model\obj\Debug\net8.0\refint\ProFatura.Model.dll
+C:\Users\Marcelo Rocha\Desktop\Visual Studio Code\Aplicacoes Web\ProFatura\ProFatura.Model\obj\Debug\net8.0\ProFatura.Model.pdb
+C:\Users\Marcelo Rocha\Desktop\Visual Studio Code\Aplicacoes Web\ProFatura\ProFatura.Model\obj\Debug\net8.0\ref\ProFatura.Model.dll
+C:\Users\Marcelo Rocha\Desktop\ProFatura\ProFatura\ProFatura.Model\bin\Debug\net8.0\ProFatura.Model.deps.json
+C:\Users\Marcelo Rocha\Desktop\ProFatura\ProFatura\ProFatura.Model\bin\Debug\net8.0\ProFatura.Model.dll
+C:\Users\Marcelo Rocha\Desktop\ProFatura\ProFatura\ProFatura.Model\bin\Debug\net8.0\ProFatura.Model.pdb
+C:\Users\Marcelo Rocha\Desktop\ProFatura\ProFatura\ProFatura.Model\obj\Debug\net8.0\ProFatura.Model.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Marcelo Rocha\Desktop\ProFatura\ProFatura\ProFatura.Model\obj\Debug\net8.0\ProFatura.Model.AssemblyInfoInputs.cache
+C:\Users\Marcelo Rocha\Desktop\ProFatura\ProFatura\ProFatura.Model\obj\Debug\net8.0\ProFatura.Model.AssemblyInfo.cs
+C:\Users\Marcelo Rocha\Desktop\ProFatura\ProFatura\ProFatura.Model\obj\Debug\net8.0\ProFatura.Model.csproj.CoreCompileInputs.cache
+C:\Users\Marcelo Rocha\Desktop\ProFatura\ProFatura\ProFatura.Model\obj\Debug\net8.0\ProFatura.Model.dll
+C:\Users\Marcelo Rocha\Desktop\ProFatura\ProFatura\ProFatura.Model\obj\Debug\net8.0\refint\ProFatura.Model.dll
+C:\Users\Marcelo Rocha\Desktop\ProFatura\ProFatura\ProFatura.Model\obj\Debug\net8.0\ProFatura.Model.pdb
+C:\Users\Marcelo Rocha\Desktop\ProFatura\ProFatura\ProFatura.Model\obj\Debug\net8.0\ref\ProFatura.Model.dll
+C:\Users\Marcelo Rocha\Desktop\PROFATURA\ProFatura\ProFatura\ProFatura.Model\bin\Debug\net8.0\ProFatura.Model.deps.json
+C:\Users\Marcelo Rocha\Desktop\PROFATURA\ProFatura\ProFatura\ProFatura.Model\bin\Debug\net8.0\ProFatura.Model.dll
+C:\Users\Marcelo Rocha\Desktop\PROFATURA\ProFatura\ProFatura\ProFatura.Model\bin\Debug\net8.0\ProFatura.Model.pdb
+C:\Users\Marcelo Rocha\Desktop\PROFATURA\ProFatura\ProFatura\ProFatura.Model\obj\Debug\net8.0\ProFatura.Model.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Marcelo Rocha\Desktop\PROFATURA\ProFatura\ProFatura\ProFatura.Model\obj\Debug\net8.0\ProFatura.Model.AssemblyInfoInputs.cache
+C:\Users\Marcelo Rocha\Desktop\PROFATURA\ProFatura\ProFatura\ProFatura.Model\obj\Debug\net8.0\ProFatura.Model.AssemblyInfo.cs
+C:\Users\Marcelo Rocha\Desktop\PROFATURA\ProFatura\ProFatura\ProFatura.Model\obj\Debug\net8.0\ProFatura.Model.csproj.CoreCompileInputs.cache
+C:\Users\Marcelo Rocha\Desktop\PROFATURA\ProFatura\ProFatura\ProFatura.Model\obj\Debug\net8.0\ProFatura.Model.dll
+C:\Users\Marcelo Rocha\Desktop\PROFATURA\ProFatura\ProFatura\ProFatura.Model\obj\Debug\net8.0\refint\ProFatura.Model.dll
+C:\Users\Marcelo Rocha\Desktop\PROFATURA\ProFatura\ProFatura\ProFatura.Model\obj\Debug\net8.0\ProFatura.Model.pdb
+C:\Users\Marcelo Rocha\Desktop\PROFATURA\ProFatura\ProFatura\ProFatura.Model\obj\Debug\net8.0\ref\ProFatura.Model.dll
