@@ -403,3 +403,4 @@ C:\Users\Marcelo Rocha\Desktop\PROFATURA\ProFatura\ProFatura\ProFatura\bin\Debug
 C:\Users\Marcelo Rocha\Desktop\PROFATURA\ProFatura\ProFatura\ProFatura\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
 C:\Users\Marcelo Rocha\Desktop\PROFATURA\ProFatura\ProFatura\ProFatura\bin\Debug\net8.0\MySqlConnector.dll
 C:\Users\Marcelo Rocha\Desktop\PROFATURA\ProFatura\ProFatura\ProFatura\bin\Debug\net8.0\Pomelo.EntityFrameworkCore.MySql.dll
+C:\Users\Marcelo Rocha\Desktop\PROFATURA\ProFatura\ProFatura\ProFatura\obj\Debug\net8.0\ProFatura.sourcelink.json
