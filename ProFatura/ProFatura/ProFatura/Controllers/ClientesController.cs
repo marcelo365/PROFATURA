@@ -43,7 +43,7 @@ namespace ProFatura.Controllers
             return Ok(cliente);
         }
 
-        [HttpGet]
+        [HttpGet, HttpHead]
         [Route("GetAllClientes")]
         public async Task<IActionResult> GetAllClientes()
         {

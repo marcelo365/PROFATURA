@@ -236,6 +236,16 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ProFatura.Controllers.ClientesController",
+    "Method": "GetAllClientes",
+    "RelativePath": "GetAllClientes",
+    "HttpMethod": "HEAD",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ProFatura.Controllers.FacturasController",
     "Method": "GetAllFacturas",
     "RelativePath": "GetAllFacturas",

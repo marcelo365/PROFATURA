@@ -83,6 +83,16 @@
             "description": "Success"
           }
         }
+      },
+      "head": {
+        "tags": [
+          "Clientes"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
       }
     },
     "/CreateCliente": {
