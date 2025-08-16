@@ -1,0 +1,634 @@
+<div class="body">
+
+    <div class="wrapper">
+
+        <!--Barra Lateral-->
+        <div class="sidebar">
+            <div class="info">
+                <h2 routerLink='/login'><span>Pro</span>Fatura</h2>
+                <p>Username : <span name="userName" id="username">{{userName}}</span></p>
+            </div>
+
+            <ul>
+                <li><a (click)="irVisualizarProdutos()">Visualizar Produtos</a></li>
+                <li><a (click)="irVisualizarFuncionarios()">Visualizar Trabalhadores</a></li>
+                <li><a (click)="irVisualizarClientes()">Visualizar Clientes</a></li>
+                <li><a (click)="irCadastrarProdutos()">Cadastrar Produtos</a></li>
+                <li><a (click)="irCadastrarFuncionarios()">Registar Funcionários</a></li>
+                <li><a (click)="irCadastrarAdministradores()">Registar Administradores</a></li>
+                <li><a (click)="irCadastrarClientes()">Cadastrar Clientes</a></li>
+                <li><a (click)="irAlterarSenha()">Alterar Senha</a></li>
+                <li><a (click)="irGestaoFaturas()">Facturas</a></li>
+                <li><a (click)="irDashBoard()">DashBoard</a></li>
+
+
+            </ul>
+            <div class="decoration">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+
+
+        <!--paginaPrincipal-->
+        <div class="paginaPrincipal">
+            <h1 class="titulo"><span>Pro</span>Fatura</h1>
+            <p class="descricao">Bem-vindo ao ProFatura, o sistema de faturação definitivo projetado para simplificar e
+                otimizar a gestão financeira da sua empresa. Com o ProFatura, você ganha uma ferramenta robusta,
+                intuitiva e segura para lidar com todas as suas necessidades de faturamento</p>
+        </div>
+
+
+        <!--Visualizar Produtos-->
+        <div class="visualizarProdutos ocultar">
+
+            <div class="bodyVisualizarProdutos">
+                <main class="table" id="customers_table">
+                    <section class="table__header">
+                        <h1 (click)="ngOnInit()">Produtos</h1>
+
+                        <div class="input-group">
+                            <input type="text" name="procurarProdutoInput" [(ngModel)]="procurarProdutoInput"
+                                placeholder="Procure por ID, Nome ou Categoria">
+                            <button id="btnPesquisar" (click)="fazerPesquisa()">OK</button>
+                        </div>
+
+                    </section>
+
+                    <section class="table__body">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th> Id </th>
+                                    <th> Nome </th>
+                                    <th> Data de Cadastro </th>
+                                    <th> Categoria </th>
+                                    <th> Preço </th>
+                                    <th> Estoque</th>
+                                    <!--<th> Activo</th>-->
+                                    <th> Edição </th>
+                                </tr>
+                            </thead>
+
+                            <tbody class="produtosDisponiveis">
+                                <tr *ngFor="let produto of produtosDisponiveis" [id]="produto.produtoID">
+                                    <td> {{produto.produtoID}} </td>
+                                    <td>{{produto.nome}}</td>
+                                    <td> {{produto.dataDeCadastro}} </td>
+                                    <td> {{produto.categoria}} </td>
+                                    <td class="status">{{produto.preco}} Kz</td>
+                                    <td> <strong> {{produto.quantidadeEmEstoque}} </strong></td>
+                                    <!--<td>{{ produto.activo }}</td>-->
+                                    <td><button (click)="irParaEditarProduto(produto.produtoID)"
+                                            class="editar">Editar</button>
+                                        <button id="eliminar"
+                                            (click)="eliminarProduto(produto.produtoID)">Eliminar</button>
+                                    </td>
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+                    </section>
+
+                </main>
+            </div>
+
+        </div>
+
+
+        <!--Cadastrar Produtos-->
+        <div class="cadastrarProdutos ocultar">
+
+            <div class="form">
+                <form>
+                    <h2>Cadastro de Produtos</h2>
+
+                    <label for="">Nome do Produto : </label>
+                    <div>
+                        <input type="text" name="nomeProduto" [(ngModel)]="nomeProduto"
+                            placeholder="Digite o Nome do Produto" required>
+                    </div>
+
+                    <label for="">Preço : </label>
+                    <div>
+                        <input type="number" name="precoProduto" [(ngModel)]="precoProduto"
+                            placeholder="Digite o Preço do Produto" required>
+                    </div>
+
+                    <label for="">Quantidade em Estoque : </label>
+                    <div>
+                        <input type="number" name="quantidadeEmEstoqueProduto" [(ngModel)]="quantidadeEmEstoqueProduto"
+                            placeholder="Digite a Quantidade em Estoque" required>
+                    </div>
+
+                    <label for="">Categoria : </label>
+                    <div>
+                        <!--<input type="text" name="categoriaProduto" [(ngModel)]="categoriaProduto"
+                            placeholder="Digite a Categoria do Produto" required>-->
+                        <select name="categoriasDisponiveis" [(ngModel)]="categoriaProduto" required>
+                            <option disabled selected hidden value="">Escolha uma categoria</option>
+                            <option *ngFor="let categoria of categoriasDisponiveis" [value]="categoria">
+                                {{categoria}}
+                            </option>
+                        </select>
+                    </div>
+
+                    <div id="enviar">
+                        <button (click)="fazerCadastroProduto()" type="submit">Cadastrar Produto</button>
+                    </div>
+
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <!--Cadastrar Funcionários-->
+
+        <div class="cadastrarFuncionarios ocultar">
+
+            <div class="form">
+
+                <form action="">
+                    <h2>Cadastro de Funcionário</h2>
+
+                    <label for="">Nome Completo : </label>
+                    <div>
+                        <input name="nomeCompleto" [(ngModel)]="nomeCompleto" type="text" id="nomeCompleto"
+                            placeholder="Digite o seu nome completo" required>
+                    </div>
+
+                    <label for="">Email : </label>
+                    <div>
+                        <input type="email" name="email" [(ngModel)]="email" id="email" placeholder="Digite o seu Email"
+                            required>
+                    </div>
+
+                    <label for="">Nº de Bilhete de Identidade : </label>
+                    <div>
+                        <input type="text" name="bilheteIdentidade" [(ngModel)]="bilheteIdentidade"
+                            placeholder="Digite o seu nº de BI" required>
+                    </div>
+
+                    <label for="">Username : </label>
+                    <div>
+                        <input type="text" name="userNameFuncionario" [(ngModel)]="userNameFuncionario"
+                            placeholder="Digite o seu username" required>
+                    </div>
+
+                    <label for="">Senha : </label>
+                    <div>
+                        <input type="password" name="senha" [(ngModel)]="senha" placeholder="Digite a sua senha"
+                            required>
+                    </div>
+
+                    <div id="enviar">
+                        <button (click)="fazerCadastroAdministrador(0)" type="submit">Cadastrar Funcionário</button>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+
+        <!--Cadastrar Administradores-->
+
+        <div class="cadastrarAdministradores ocultar">
+
+            <div class="form">
+
+                <form action="">
+
+                    <h2>Cadastro de Admnistrador</h2>
+
+                    <label for="">Nome Completo : </label>
+                    <div>
+                        <input type="text" name="nomeCompletoCadastroAdministrador"
+                            [(ngModel)]="nomeCompletoCadastroAdministrador" placeholder="Digite o seu nome completo"
+                            required>
+                    </div>
+
+                    <label for="">Email : </label>
+                    <div>
+                        <input type="email" name="emailCadastroAdministrador" [(ngModel)]="emailCadastroAdministrador"
+                            placeholder="Digite o seu Email" required>
+                    </div>
+
+                    <label for="">Nº de Bilhete de Identidade : </label>
+                    <div>
+                        <input type="text" id="bi" name="bilheteIdentidadeCadastroAdministrador"
+                            [(ngModel)]="bilheteIdentidadeCadastroAdministrador" placeholder="Digite o seu nº de BI"
+                            required>
+                    </div>
+
+                    <label for="">Username : </label>
+                    <div>
+                        <input type="text" name="userNameCadastroAdministrador"
+                            [(ngModel)]="userNameCadastroAdministrador" placeholder="Digite o seu username" required>
+                    </div>
+
+                    <label for="">Senha : </label>
+                    <div>
+                        <input type="password" id="senha" name="senhaCadastroAdministrador"
+                            [(ngModel)]="senhaCadastroAdministrador" placeholder="Digite a sua senha" required>
+                    </div>
+
+                    <div id="enviar">
+                        <button (click)="fazerCadastroAdministrador(1)" type="submit">Cadastrar Administrador</button>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+
+        <!--Editar Produtos-->
+        <div class="editarProduto ocultar">
+
+            <div class="form">
+                <form>
+                    <h2>Edição de Produto</h2>
+
+                    <label for="">Nome do Produto : </label>
+                    <div>
+                        <input type="text" name="nomeProduto" [(ngModel)]="nomeProduto"
+                            placeholder="Digite o Nome do Produto" required>
+                    </div>
+
+                    <label for="">Preço : </label>
+                    <div>
+                        <input type="number" name="precoProduto" [(ngModel)]="precoProduto"
+                            placeholder="Digite o Preço do Produto" required>
+                    </div>
+
+                    <label for="">Quantidade em Estoque : </label>
+                    <div>
+                        <input type="number" name="quantidadeEmEstoqueProduto" [(ngModel)]="quantidadeEmEstoqueProduto"
+                            placeholder="Digite a Quantidade em Estoque" required>
+                    </div>
+
+                    <label for="">Categoria : </label>
+                    <div>
+                        <select name="categoriasDisponiveis" [(ngModel)]="categoriaProduto" required>
+                            <option disabled selected hidden value="">Escolha uma categoria</option>
+                            <option *ngFor="let categoria of categoriasDisponiveis" [value]="categoria">
+                                {{categoria}}
+                            </option>
+                        </select>
+                    </div>
+
+                    <div id="enviar">
+                        <button (click)="editarProduto()" type="submit">Editar Produto</button>
+                        <button class="btnVoltar" (click)="voltarVisualizarProduto()">Voltar</button>
+                    </div>
+
+
+                </form>
+
+            </div>
+
+
+
+        </div>
+
+        <!--Cadastrar Clientes-->
+        <div class="cadastrarClientes ocultar">
+
+            <div class="form">
+
+                <form action="">
+
+                    <h2>Cadastro de Cliente</h2>
+
+                    <label for="">Nome Completo : </label>
+                    <div>
+                        <input type="text" name="nomeCliente" [(ngModel)]="nomeCliente"
+                            placeholder="Digite o seu nome completo" required>
+                    </div>
+
+                    <label for="">Telemóvel : </label>
+                    <div>
+                        <input type="number" name="telemovel" [(ngModel)]="telemovel"
+                            placeholder="Digite o seu Telemóvel" required>
+                    </div>
+
+                    <div id="enviar">
+                        <button (click)="fazerCadastroCliente()" type="submit">Cadastrar Cliente</button>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+
+        <!--Gestão de Facturas-->
+        <div class="gestaoFaturas ocultar">
+            <div class="btns">
+                <button (click)="gerarHistoricoTodasFacturas()" class="btnGerar">Gerar histórico de todas as
+                    facturas</button>
+
+                <button (click)="irInserirPeriodos()" class="btnGerar">Gerar histórico de facturas por período</button>
+
+                <button (click)="irInserirProduto()" class="btnGerar alinha">Gerar relatório de vendas por
+                    produto</button>
+            </div>
+
+        </div>
+
+        <!--Digitar Períodos-->
+        <div class="digitarPeriodos ocultar">
+
+            <div class="form">
+
+                <form action="">
+
+                    <h2>Intervalo de Períodos</h2>
+
+                    <label for="">Insira a Data de Começo : </label>
+                    <div>
+                        <input type="date" name="dataComeco" [(ngModel)]="dataComeco" required>
+                    </div>
+
+                    <label for="">Insira a Data Final : </label>
+                    <div>
+                        <input type="date" name="dataFim" [(ngModel)]="dataFim" required>
+                    </div>
+
+                    <div id="enviar">
+                        <button (click)="gerarRelatorioPeriodo()" type="submit">OK</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+        <!--Digitar Produto para histórico de Factura-->
+        <div class="digitarProduto ocultar">
+            <div class="form">
+                <form action="">
+                    <h2>Produto</h2>
+
+                    <label for="">Insira o nome do Produto : </label>
+                    <div>
+                        <div>
+                            <input type="text" name="nomeProdutoFactura" [(ngModel)]="nomeProdutoFactura"
+                                placeholder="Digite o nome do produto" required>
+                        </div>
+                    </div>
+
+                    <div id="enviar">
+                        <button (click)="gerarRelatorioProduto()" type="submit">OK</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+        <!--Visualizar Funcionarios-->
+        <div class="visualizarFuncionarios ocultar">
+
+            <div class="bodyVisualizarFuncionarios">
+                <main class="table" id="customers_table">
+                    <section class="table__header">
+                        <h1 (click)="inicializarListaFuncionarios()">Funcionários</h1>
+
+                        <div class="input-group">
+                            <input type="number" placeholder="Procure por ID" [(ngModel)]="procurarFuncionarioInput">
+                            <button id="btnPesquisar" (click)="fazerPesquisaFuncionario()">OK</button>
+                        </div>
+
+                    </section>
+
+                    <section class="table__body">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th> Id </th>
+                                    <th> Nome </th>
+                                    <th> Email </th>
+                                    <th> BI </th>
+                                    <th> Username </th>
+                                    <th> Tipo </th>
+                                    <th>Edição</th>
+                                </tr>
+                            </thead>
+
+                            <tbody class="utilizadoresDisponiveis">
+                                <tr *ngFor="let funcionario of funcionariosDisponiveis">
+                                    <td> {{funcionario.userID}} </td>
+                                    <td>{{funcionario.nomeCompleto}}</td>
+                                    <td>{{funcionario.email}} </td>
+                                    <td> {{funcionario.bilheteIdentidade}}</td>
+                                    <td class="status">{{funcionario.userName}}</td>
+                                    <td> <strong> </strong>{{funcionario.tipo==0?"Funcionário":"Administrador"}}</td>
+                                    <td><button class="editar"
+                                            (click)="irEditarFuncionario(funcionario.userID)">Editar</button>
+                                        <button id="eliminar"
+                                            (click)="eliminarFuncionario(funcionario.userID)">Eliminar</button>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </section>
+
+                </main>
+            </div>
+        </div>
+
+        <!--Editar Funcionário-->
+        <div class="editarFuncionario ocultar">
+            <div class="form">
+                <form>
+                    <h2>Edição de Funcionário</h2>
+
+                    <label for="">Nome Completo : </label>
+                    <div>
+                        <input type="text" placeholder="Digite o Nome Completo" name="nomeCompletoFuncionario"
+                            [(ngModel)]="nomeCompletoFuncionario" required>
+                    </div>
+
+                    <label for="">Email : </label>
+                    <div>
+                        <input type="text" placeholder="Digite o email" name="emailFuncionario"
+                            [(ngModel)]="emailFuncionario" required>
+                    </div>
+
+                    <label for="">Bilhete de Identidade : </label>
+                    <div>
+                        <input type="text" placeholder="Digite o Bilhete de Identidade"
+                            name="bilheteIdentidadeFuncionario" [(ngModel)]="bilheteIdentidadeFuncionario" required>
+                    </div>
+
+                    <div id="enviar">
+                        <button type="submit" (click)="efectuarEdicaoFuncionario()">Editar Funcionário</button>
+                        <button class="btnVoltar" (click)="voltarVisualizarFuncionario()">Voltar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!--Visualizar Clientes-->
+        <div class="visualizarClientes ocultar">
+
+            <div class="bodyVisualizarClientes">
+                <main class="table" id="customers_table">
+                    <section class="table__header">
+                        <h1 (click)="inicializarListaClientes()">Clientes</h1>
+
+                        <div class="input-group">
+                            <input type="number" placeholder="Procure por nº de telemóvel" name="procurarClienteInput"
+                                [(ngModel)]="procurarClienteInput">
+                            <button id="btnPesquisar" (click)="pesquisarCliente()">OK</button>
+                        </div>
+
+                    </section>
+
+                    <section class="table__body">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th> Id </th>
+                                    <th> Nome </th>
+                                    <th> Telemóvel </th>
+                                    <th>Edição</th>
+                                </tr>
+                            </thead>
+
+                            <tbody class="clientesDisponiveis">
+                                <tr *ngFor="let cliente of clientesDisponiveis">
+                                    <td> {{cliente.clienteID}} </td>
+                                    <td>{{cliente.nome}}</td>
+                                    <td>{{cliente.telemovel}}</td>
+                                    <td><button class="editar"
+                                            (click)="irEditarCliente(cliente.clienteID)">Editar</button>
+                                        <button id="eliminar"
+                                            (click)="eliminarCliente(cliente.clienteID)">Eliminar</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                </main>
+            </div>
+        </div>
+
+        <!--Editar Cliente-->
+        <div class="editarCliente ocultar">
+            <div class="form">
+                <form>
+                    <h2>Edição de Cliente</h2>
+
+                    <label for="">Nome do Cliente : </label>
+                    <div>
+                        <input type="text" placeholder="Digite o Nome do Cliente" name="nomeClienteEditar"
+                            [(ngModel)]="nomeClienteEditar" required>
+                    </div>
+
+                    <label for="">Telemóvel : </label>
+                    <div>
+                        <input type="number" placeholder="Digite o nº de telemóvel" name="telemovelClienteEditar"
+                            [(ngModel)]="telemovelClienteEditar" required>
+                    </div>
+
+                    <div id="enviar">
+                        <button type="submit" (click)="efectuarEdicaoCliente()">Editar Funcionário</button>
+                        <button class="btnVoltar" (click)="voltarVisualizarCliente()">Voltar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!--Alterar Senha-->
+        <div class="alterarSenha ocultar">
+            <div class="form">
+                <form>
+                    <h2>Alteração da Senha</h2>
+
+                    <label for="">Senha actual : </label>
+                    <div>
+                        <input type="text" placeholder="Digite a senha actual" name="senhaActual"
+                            [(ngModel)]="senhaActual" required>
+                    </div>
+
+                    <label for="">Nova senha : </label>
+                    <div>
+                        <input type="text" placeholder="Digite a nova senha" name="novaSenha" [(ngModel)]="novaSenha"
+                            required>
+                    </div>
+
+                    <label for="">Confirmação da nova senha : </label>
+                    <div>
+                        <input type="text" placeholder="Confirme a nova senha" name="confirmacaoSenha"
+                            [(ngModel)]="confirmacaoSenha" required>
+                    </div>
+
+                    <div id="enviar">
+                        <button type="submit" (click)="mudarSenha()">Mudar Senha</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!--DashBoard-->
+        <div class="dashboard ocultar">
+
+            <div class="cards">
+
+                <div class="clienteFrequente it">
+                    <h1>Cliente Com Maior Receita</h1>
+                    <p>{{clienteComMaisReceita?.nome}} - {{clienteComMaisReceita?.telemovel}}</p>
+                </div>
+    
+                <div class="funcionarioMaiorReceita it">
+                    <h1>Funcionário Com Maior Receita</h1>
+                    <p>{{funcionarioComMaisReceita?.nomeCompleto}} - {{funcionarioComMaisReceita?.userName}} - {{funcionarioComMaisReceita?.bilheteIdentidade}}</p>
+                </div>
+            </div>
+
+
+            <div class="bodyVisualizarTopCincoProdutosMaisVendidos">
+                <main class="table" id="customers_table">
+                    <section class="table__header">
+                        <h1>Top 5 Produtos Mais Vendidos</h1>
+                    </section>
+
+                    <section class="table__body">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th> Id </th>
+                                    <th> Nome </th>
+                                    <th> Categoria </th>
+                                    <th>Preço</th>
+                                </tr>
+                            </thead>
+
+                            <tbody *ngFor="let produto of top5produtosMaisVendidos">
+                                <tr>
+                                    <td> {{produto.produtoID}} </td>
+                                    <td>{{produto.nome}}</td>
+                                    <td>{{produto.categoria}}</td>
+                                    <td>{{produto.preco}} kz</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                </main>
+            </div>
+
+
+        </div>
+
+
+    </div>
+</div>

@@ -1,0 +1,122 @@
+<div id="all">
+
+
+
+    <div class="invoice-wrapper" id="print-area">
+        <div class="invoice">
+            <div class="invoice-container">
+                <div class="invoice-head">
+                    <div class="invoice-head-top">
+                        <div class="invoice-head-top-left text-start">
+                            <h1 id="logo"><span>Pro</span>Fatura</h1>
+                        </div>
+                        <div class="invoice-head-top-right text-end">
+                            <h3>Factura</h3>
+                        </div>
+                    </div>
+                    <div class="hr"></div>
+                    <div class="invoice-head-middle">
+                        <div class="invoice-head-middle-left text-start">
+                            <p><span class="text-bold">Data</span>: {{dataCorrente}}</p>
+                        </div>
+                        <div class="invoice-head-middle-right text-end">
+                            <p>
+                                <span class="text-bold">Factura Nº: </span>{{numeroFactura}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="hr"></div>
+                    <div class="invoice-head-bottom">
+                        <div class="invoice-head-bottom-left">
+                            <ul>
+                                <li class='text-bold margensCurtas'>Cobrar a:</li>
+                                <li class='margensLongas'>{{nomeCliente}}</li>
+                            </ul>
+
+                            <ul>
+                                <li class='text-bold margensCurtas'>Gerada por:</li>
+                                <li class="margens" >{{geradoPor}}</li>
+                            </ul>
+
+                            <ul class="tipoPagamento ocultar">
+                                <li class="text-bold">Tipo de Pagamento : {{tipoPagamento}}</li>
+                            </ul>
+                        </div>
+                        <div class="invoice-head-bottom-right">
+                            <ul class="text-end">
+                                <li class='text-bold margens'>Pagar Para:</li>
+                                <li>ProFatura</li>
+                                <li>Kifica , Benfica</li>
+                                <li>Rua Conde Nº26</li>
+                                <li class="margens">profatura&commat;gmail.com</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="overflow-view">
+                    <div class="invoice-body">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td class="text-bold">Nº</td>
+                                    <td class="text-bold">Nome do Produto</td>
+                                    <td class="text-bold">Preço</td>
+                                    <td class="text-bold">Quantidade</td>
+                                    <td class="text-bold">Subtotal</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <!--<tr>
+                                    <td>1</td>
+                                    <td>Creating a website design</td>
+                                    <td>$50.00</td>
+                                    <td>10</td>
+                                    <td class="text-end">$500.00</td>
+                                </tr>-->
+
+                                <tr *ngFor="let produtoFactura of produtosFactura ; let i = index">
+                                    <td>{{i+1}}</td>
+                                    <td>{{produtoFactura.nome}}</td>
+                                    <td>{{produtoFactura.preco.toFixed(2)}}</td>
+                                    <td>{{produtoFactura.quantidade}}</td>
+                                    <td>{{produtoFactura.subtotal.toFixed(2)}} kz</td>
+                                </tr>
+                               
+                               
+                            </tbody>
+                        </table>
+                        <div class="invoice-body-bottom">
+                            <div class="invoice-body-info-item border-bottom">
+                                <div class="info-item-td text-end text-bold">Subtotal:</div>
+                                <div class="info-item-td text-end">{{subTotal}} Kz</div>
+                            </div>
+                            <div class="invoice-body-info-item border-bottom">
+                                <div class="info-item-td text-end text-bold">Taxa IVA (14%):</div>
+                                <div class="info-item-td text-end">{{taxaIVA}} Kz</div>
+                            </div>
+                            <div class="invoice-body-info-item">
+                                <div class="info-item-td text-end text-bold">Total:</div>
+                                <div class="info-item-td text-end">{{total}} Kz</div>
+                            </div>
+                            <div class="invoice-body-info-item">
+                                <div class="info-item-td text-end text-bold">Quantia Paga:</div>
+                                <div class="info-item-td text-end">{{quantiaPaga?quantiaPaga.toFixed(2):0}} Kz</div>
+                            </div>
+                            <div class="invoice-body-info-item">
+                                <div class="info-item-td text-end text-bold">Troco:</div>
+                                <div class="info-item-td text-end">{{ troco?troco.toFixed(2):0 }} Kz</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="invoice-foot text-center">
+                    <p><span class="text-bold text-center">NOTA:&nbsp;</span>Isto é uma factura automatizada e não
+                        requer nenhuma assinatura física.</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

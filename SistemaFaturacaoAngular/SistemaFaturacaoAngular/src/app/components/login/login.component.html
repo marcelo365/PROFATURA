@@ -1,0 +1,27 @@
+<div class="form">
+
+    <form>
+        <h2>Login</h2>
+
+        <label for="">Username : </label>
+        <div>
+            <input type="text" id="username" name="UserName" [(ngModel)]="userName" placeholder="Digite o seu username" required>
+        </div>
+
+        <label for="" >Senha : </label>
+        <div>
+            <input type="password" name="senha" id="senha" [(ngModel)]="senha" placeholder="Digite a sua senha" required>
+        </div>
+
+        <div id="enviar">
+            <button (click)="fazerLogin()" type="submit">Entrar</button>
+        </div>
+
+        <div id = "voltar">
+            <button routerLink = '/'>Voltar</button>
+        </div>
+        
+
+    </form>
+
+</div>
