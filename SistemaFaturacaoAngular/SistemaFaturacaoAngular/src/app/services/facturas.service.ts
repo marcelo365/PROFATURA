@@ -12,19 +12,19 @@ export class FacturasService {
   constructor() { }
 
   createFactura(factura: Factura) {
-    return this.httpClient.post<number>("https://localhost:7192/CreateFactura", factura);
+    return this.httpClient.post<number>("https://profatura.onrender.com/CreateFactura", factura);
   }
 
   getAllFacturas() {
-    return this.httpClient.get<Array<Factura>>("https://localhost:7192/GetAllFacturas");
+    return this.httpClient.get<Array<Factura>>("https://profatura.onrender.com/GetAllFacturas");
   }
 
   getFacturasByDataFactura(data1: string, data2: string) {
-    return this.httpClient.get<Array<Factura>>(`https://localhost:7192/GetFacturasByDataFactura?data1=${data1}&data2=${data2}`);
+    return this.httpClient.get<Array<Factura>>(`https://profatura.onrender.com/GetFacturasByDataFactura?data1=${data1}&data2=${data2}`);
   }
 
   getFactura(id : number){
-    return this.httpClient.get<Factura>(`https://localhost:7192/GetFactura?id=${id}`);
+    return this.httpClient.get<Factura>(`https://profatura.onrender.com/GetFactura?id=${id}`);
   }
 
 }
