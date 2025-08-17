@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ProFatura")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8f0d8bfc36131a280fbf02f70d0bc1fe6870dbd4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3f6d686f3eafa0d37d9fe1ef0a7be192fd0ce89f")]
 [assembly: System.Reflection.AssemblyProductAttribute("ProFatura")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ProFatura")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
