@@ -12,35 +12,35 @@ export class ProdutosService {
   constructor() { }
 
   getAllProdutos(){
-    return this.httpClient.get<Array<Produto>>("https://localhost:7192/GetAllProdutos");
+    return this.httpClient.get<Array<Produto>>("https://profatura.onrender.com/GetAllProdutos");
   }
 
   getProdutoByID(id : number){
-    return this.httpClient.get<Produto>(`https://localhost:7192/GetProdutoByID?id=${id}`);
+    return this.httpClient.get<Produto>(`https://profatura.onrender.com/GetProdutoByID?id=${id}`);
   }
 
   getProdutoByNome(nome : string){
-    return this.httpClient.get<Produto>(`https://localhost:7192/GetProdutoByNome?nome=${nome}`); 
+    return this.httpClient.get<Produto>(`https://profatura.onrender.com/GetProdutoByNome?nome=${nome}`); 
   }
 
   getProdutosByCategorias(categoria : string){
-    return this.httpClient.get<Array<Produto>>(`https://localhost:7192/GetProdutosByCategoria?categoria=${categoria}`);
+    return this.httpClient.get<Array<Produto>>(`https://profatura.onrender.com/GetProdutosByCategoria?categoria=${categoria}`);
   }
 
   createProduto(produto : Produto){
-    return this.httpClient.post<boolean>("https://localhost:7192/CreateProduto" , produto);
+    return this.httpClient.post<boolean>("https://profatura.onrender.com/CreateProduto" , produto);
   }
 
   updateProduto(produto : Produto){
-    return this.httpClient.put<boolean>("https://localhost:7192/UpdateProduto" , produto);
+    return this.httpClient.put<boolean>("https://profatura.onrender.com/UpdateProduto" , produto);
   }
 
   deleteProduto(id : number){
-    return this.httpClient.delete<boolean>(`https://localhost:7192/DeleteProduto?id=${id}`);
+    return this.httpClient.delete<boolean>(`https://profatura.onrender.com/DeleteProduto?id=${id}`);
   }
 
   getTop5ProdutosMaisVendidos(){
-    return this.httpClient.get<Array<Produto>>("https://localhost:7192/GettopCincoProdutosMaisVendidos");
+    return this.httpClient.get<Array<Produto>>("https://profatura.onrender.com/GettopCincoProdutosMaisVendidos");
   }
 
 
