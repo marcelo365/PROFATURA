@@ -12,6 +12,17 @@ builder.Services.AddDbContext<ProFaturaDbContext>(x =>
     )
 );
 
+// Adicionar CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
 builder.Services.AddScoped<IUtilizadoresRepository, UtilizadoresRepository>();
 builder.Services.AddScoped<IProdutosRepository, ProdutosRepository>();
 builder.Services.AddScoped<IFacturasRepository, FacturasRepository>();
@@ -56,6 +67,8 @@ if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 app.UseHttpsRedirection();
 
 app.UseCors(); //
+
+app.UseCors("AllowAll");
 
 app.UseAuthorization();
 
