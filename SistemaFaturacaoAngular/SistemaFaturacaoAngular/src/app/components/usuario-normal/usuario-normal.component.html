@@ -3,8 +3,8 @@
     <nav>
         <div class="logo">
             <a routerLink="/login"><span>Pro</span>Fatura</a>
-            <p (click)="irAlterarSenha()">Alterar Senha</p>
-            <p (click)="irGerarFacturas()">Gerar Facturas</p>
+            <p (click)="irAlterarSenha()" [ngClass]="{ 'abaAtiva': abaSeleccionada == 'alterarSenha'}" >Alterar Senha</p>
+            <p (click)="irGerarFacturas()" [ngClass]="{ 'abaAtiva': abaSeleccionada == 'gerarFacturas'}">Gerar Facturas</p>
         </div>
         <p>Username : <span name="userName" id="username">{{userName}}</span></p>
     </nav>

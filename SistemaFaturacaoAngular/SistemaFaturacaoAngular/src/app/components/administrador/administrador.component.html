@@ -10,16 +10,16 @@
             </div>
 
             <ul>
-                <li><a (click)="irVisualizarProdutos()">Visualizar Produtos</a></li>
-                <li><a (click)="irVisualizarFuncionarios()">Visualizar Trabalhadores</a></li>
-                <li><a (click)="irVisualizarClientes()">Visualizar Clientes</a></li>
-                <li><a (click)="irCadastrarProdutos()">Cadastrar Produtos</a></li>
-                <li><a (click)="irCadastrarFuncionarios()">Registar Funcionários</a></li>
-                <li><a (click)="irCadastrarAdministradores()">Registar Administradores</a></li>
-                <li><a (click)="irCadastrarClientes()">Cadastrar Clientes</a></li>
-                <li><a (click)="irAlterarSenha()">Alterar Senha</a></li>
-                <li><a (click)="irGestaoFaturas()">Facturas</a></li>
-                <li><a (click)="irDashBoard()">DashBoard</a></li>
+                <li><a (click)="irVisualizarProdutos()" [ngClass]="{ 'abaAtiva': abaSeleccionada == 'visualizarProdutos'}">Visualizar Produtos</a></li>
+                <li><a (click)="irVisualizarFuncionarios()" [ngClass]="{ 'abaAtiva': abaSeleccionada == 'visualizarTrabalhadores'}">Visualizar Trabalhadores</a></li>
+                <li><a (click)="irVisualizarClientes()" [ngClass]="{ 'abaAtiva': abaSeleccionada == 'visualizarClientes'}">Visualizar Clientes</a></li>
+                <li><a (click)="irCadastrarProdutos()" [ngClass]="{ 'abaAtiva': abaSeleccionada == 'cadastrarProdutos'}">Cadastrar Produtos</a></li>
+                <li><a (click)="irCadastrarFuncionarios()" [ngClass]="{ 'abaAtiva': abaSeleccionada == 'registarFuncionarios'}">Registar Funcionários</a></li>
+                <li><a (click)="irCadastrarAdministradores()" [ngClass]="{ 'abaAtiva': abaSeleccionada == 'registarAdministradores'}">Registar Administradores</a></li>
+                <li><a (click)="irCadastrarClientes()" [ngClass]="{ 'abaAtiva': abaSeleccionada == 'cadastrarClientes'}">Cadastrar Clientes</a></li>
+                <li><a (click)="irAlterarSenha()" [ngClass]="{ 'abaAtiva': abaSeleccionada == 'alterarSenha'}">Alterar Senha</a></li>
+                <li><a (click)="irGestaoFaturas()" [ngClass]="{ 'abaAtiva': abaSeleccionada == 'facturas'}">Facturas</a></li>
+                <li><a (click)="irDashBoard()" [ngClass]="{ 'abaAtiva': abaSeleccionada == 'dashboard'}">DashBoard</a></li>
 
 
             </ul>

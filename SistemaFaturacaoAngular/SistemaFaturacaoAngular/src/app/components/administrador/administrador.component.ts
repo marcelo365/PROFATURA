@@ -35,6 +35,7 @@ export class AdministradorComponent implements OnInit {
   router = inject(Router);
 
   userName: string = this.dadosAdministrador.getUserName();
+  abaSeleccionada: string = "";
 
   //cadastro de administradores
   nomeCompletoCadastroAdministrador: string = "";
@@ -118,7 +119,7 @@ export class AdministradorComponent implements OnInit {
   //dashboard
   top5produtosMaisVendidos: Array<Produto> = [];
   clienteComMaisReceita: Cliente | null = null;
-  funcionarioComMaisReceita : Utilizador | null = null;
+  funcionarioComMaisReceita: Utilizador | null = null;
   //
 
   constructor() {
@@ -145,7 +146,7 @@ export class AdministradorComponent implements OnInit {
     });
   }
 
-  inicializarFuncionarioComMaisReceita(){
+  inicializarFuncionarioComMaisReceita() {
     this.utilizadoresService.getFuncionarioComMaisReceita().subscribe(res => {
       this.funcionarioComMaisReceita = res;
     });
@@ -171,6 +172,7 @@ export class AdministradorComponent implements OnInit {
   }
 
   irCadastrarProdutos() {
+    this.abaSeleccionada = "cadastrarProdutos";
     var paginaPrincipal = <HTMLDivElement>document.getElementsByClassName("paginaPrincipal")[0];
     var cadastrarProdutos = <HTMLDivElement>document.getElementsByClassName("cadastrarProdutos")[0];
     var visualizarProdutos = <HTMLDivElement>document.getElementsByClassName("visualizarProdutos")[0];
@@ -208,6 +210,8 @@ export class AdministradorComponent implements OnInit {
   }
 
   irVisualizarProdutos() {
+    this.abaSeleccionada = "visualizarProdutos";
+
     var paginaPrincipal = <HTMLDivElement>document.getElementsByClassName("paginaPrincipal")[0];
     var cadastrarProdutos = <HTMLDivElement>document.getElementsByClassName("cadastrarProdutos")[0];
     var visualizarProdutos = <HTMLDivElement>document.getElementsByClassName("visualizarProdutos")[0];
@@ -245,6 +249,7 @@ export class AdministradorComponent implements OnInit {
   }
 
   irCadastrarAdministradores() {
+    this.abaSeleccionada = "registarAdministradores";
     var paginaPrincipal = <HTMLDivElement>document.getElementsByClassName("paginaPrincipal")[0];
     var cadastrarProdutos = <HTMLDivElement>document.getElementsByClassName("cadastrarProdutos")[0];
     var visualizarProdutos = <HTMLDivElement>document.getElementsByClassName("visualizarProdutos")[0];
@@ -281,6 +286,8 @@ export class AdministradorComponent implements OnInit {
   }
 
   irCadastrarFuncionarios() {
+    this.abaSeleccionada = "registarFuncionarios";
+
     var paginaPrincipal = <HTMLDivElement>document.getElementsByClassName("paginaPrincipal")[0];
     var cadastrarProdutos = <HTMLDivElement>document.getElementsByClassName("cadastrarProdutos")[0];
     var visualizarProdutos = <HTMLDivElement>document.getElementsByClassName("visualizarProdutos")[0];
@@ -317,6 +324,8 @@ export class AdministradorComponent implements OnInit {
   }
 
   irCadastrarClientes() {
+    this.abaSeleccionada = "cadastrarClientes";
+
     var paginaPrincipal = <HTMLDivElement>document.getElementsByClassName("paginaPrincipal")[0];
     var cadastrarProdutos = <HTMLDivElement>document.getElementsByClassName("cadastrarProdutos")[0];
     var visualizarProdutos = <HTMLDivElement>document.getElementsByClassName("visualizarProdutos")[0];
@@ -352,6 +361,8 @@ export class AdministradorComponent implements OnInit {
   }
 
   irGestaoFaturas() {
+    this.abaSeleccionada = "facturas";
+
     var paginaPrincipal = <HTMLDivElement>document.getElementsByClassName("paginaPrincipal")[0];
     var cadastrarProdutos = <HTMLDivElement>document.getElementsByClassName("cadastrarProdutos")[0];
     var visualizarProdutos = <HTMLDivElement>document.getElementsByClassName("visualizarProdutos")[0];
@@ -457,6 +468,8 @@ export class AdministradorComponent implements OnInit {
   }
 
   irVisualizarFuncionarios() {
+    this.abaSeleccionada = "visualizarTrabalhadores";
+
     var paginaPrincipal = <HTMLDivElement>document.getElementsByClassName("paginaPrincipal")[0];
     var cadastrarProdutos = <HTMLDivElement>document.getElementsByClassName("cadastrarProdutos")[0];
     var visualizarProdutos = <HTMLDivElement>document.getElementsByClassName("visualizarProdutos")[0];
@@ -493,6 +506,8 @@ export class AdministradorComponent implements OnInit {
   }
 
   irVisualizarClientes() {
+    this.abaSeleccionada = "visualizarClientes";
+
     var paginaPrincipal = <HTMLDivElement>document.getElementsByClassName("paginaPrincipal")[0];
     var cadastrarProdutos = <HTMLDivElement>document.getElementsByClassName("cadastrarProdutos")[0];
     var visualizarProdutos = <HTMLDivElement>document.getElementsByClassName("visualizarProdutos")[0];
@@ -528,6 +543,8 @@ export class AdministradorComponent implements OnInit {
   }
 
   irAlterarSenha() {
+    this.abaSeleccionada = "alterarSenha";
+
     var paginaPrincipal = <HTMLDivElement>document.getElementsByClassName("paginaPrincipal")[0];
     var cadastrarProdutos = <HTMLDivElement>document.getElementsByClassName("cadastrarProdutos")[0];
     var visualizarProdutos = <HTMLDivElement>document.getElementsByClassName("visualizarProdutos")[0];
@@ -562,6 +579,8 @@ export class AdministradorComponent implements OnInit {
   }
 
   irDashBoard() {
+    this.abaSeleccionada = "dashboard";
+
     var paginaPrincipal = <HTMLDivElement>document.getElementsByClassName("paginaPrincipal")[0];
     var cadastrarProdutos = <HTMLDivElement>document.getElementsByClassName("cadastrarProdutos")[0];
     var visualizarProdutos = <HTMLDivElement>document.getElementsByClassName("visualizarProdutos")[0];

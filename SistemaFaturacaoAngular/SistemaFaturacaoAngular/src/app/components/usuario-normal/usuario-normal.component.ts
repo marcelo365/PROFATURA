@@ -46,6 +46,7 @@ export class UsuarioNormalComponent implements OnInit {
   //
 
   userName: string = this.dadosAdministrador.getUserName();
+  abaSeleccionada: string = "gerarFacturas";
 
   //visualizar Produtos
   produtosDisponiveis: Array<Produto> = [];
@@ -76,7 +77,7 @@ export class UsuarioNormalComponent implements OnInit {
   senhaActual: string = "";
   novaSenha: string = "";
   confirmacaoSenha: string = "";
-  utilizadorCriado : Utilizador | null = null;
+  utilizadorCriado: Utilizador | null = null;
   //
 
   //variaveis de uso geral
@@ -85,7 +86,7 @@ export class UsuarioNormalComponent implements OnInit {
   quantiaPagamentoDinheiro: number | null = null;
   facturaCriada: Factura | null = null;
   facturaProdutoCriada: FacturaProduto | null = null;
-  numeroFatura : number | null = null;
+  numeroFatura: number | null = null;
   //
 
 
@@ -104,7 +105,8 @@ export class UsuarioNormalComponent implements OnInit {
     this.procurarProdutoInput = "";
   }
 
-  irAlterarSenha(){
+  irAlterarSenha() {
+    this.abaSeleccionada = "alterarSenha";
     var bodyVisualizarProdutos = document.getElementsByClassName("bodyVisualizarProdutos")[0];
     var factura = document.getElementsByClassName("factura")[0];
     var alterarSenha = document.getElementsByClassName("alterarSenha")[0];
@@ -128,7 +130,9 @@ export class UsuarioNormalComponent implements OnInit {
 
   }
 
-  irGerarFacturas(){
+  irGerarFacturas() {
+    this.abaSeleccionada = "gerarFacturas";
+
     var bodyVisualizarProdutos = document.getElementsByClassName("bodyVisualizarProdutos")[0];
     var factura = document.getElementsByClassName("factura")[0];
     var alterarSenha = document.getElementsByClassName("alterarSenha")[0];
@@ -448,7 +452,7 @@ export class UsuarioNormalComponent implements OnInit {
     cadastrarCliente.classList.remove("ocultar");
   }
 
-  voltarCadastrarCliente(){
+  voltarCadastrarCliente() {
     var autenticarCliente = document.getElementsByClassName("autenticarCliente")[0];
     var cadastrarCliente = document.getElementsByClassName("cadastrarCliente")[0];
 
@@ -520,7 +524,7 @@ export class UsuarioNormalComponent implements OnInit {
       this.dadosAdministrador.setCliente(this.clienteCriado);
     }
 
-    if((this.subtotalProdutos != null) && (this.taxaIVA != null) && (this.totalProdutos != null)){
+    if ((this.subtotalProdutos != null) && (this.taxaIVA != null) && (this.totalProdutos != null)) {
       this.dadosAdministrador.setSubTotal(this.subtotalProdutos);
       this.dadosAdministrador.setTaxaIVA(this.taxaIVA);
       this.dadosAdministrador.setTotal(this.totalProdutos);
@@ -563,7 +567,7 @@ export class UsuarioNormalComponent implements OnInit {
 
     this.atualizarStockProdutosDisponiveis();
     await this.criarFacturasProdutos();
-    this.dadosAdministrador.setNumeroFactura(this.numeroFatura?this.numeroFatura:0);
+    this.dadosAdministrador.setNumeroFactura(this.numeroFatura ? this.numeroFatura : 0);
 
     this.router.navigateByUrl('/factura');
   }
@@ -577,7 +581,7 @@ export class UsuarioNormalComponent implements OnInit {
     this.atualizarStockProdutosDisponiveis();
     await this.criarFacturasProdutos();
     //
-    this.dadosAdministrador.setNumeroFactura(this.numeroFatura?this.numeroFatura:0);
+    this.dadosAdministrador.setNumeroFactura(this.numeroFatura ? this.numeroFatura : 0);
     this.router.navigateByUrl('/factura');
   }
 
@@ -600,7 +604,7 @@ export class UsuarioNormalComponent implements OnInit {
     var idUsuario = this.dadosAdministrador.getUtilizador()?.userID;
     var idCliente = this.clienteCriado?.clienteID;
 
-    if ((idUsuario != null) && (this.totalProdutos != null) && (idCliente!=null)) {
+    if ((idUsuario != null) && (this.totalProdutos != null) && (idCliente != null)) {
 
       //criar factura primeiro
       this.facturaCriada = {
@@ -614,19 +618,19 @@ export class UsuarioNormalComponent implements OnInit {
       try {
         const res = await this.facturasServices.createFactura(this.facturaCriada).toPromise();
         console.log(res);
-        if(res){
+        if (res) {
           this.numeroFatura = res;
         }
-        
+
         this.cr.detectChanges();
-  
+
         if ((res != -1) && res) {
           console.log("Factura Criada");
-  
+
           // criar as facturasProdutos
           for (const produtoFactura of this.produtosFactura) {
             const idProduto = await this.getProdutoIDByProdutoFactura(produtoFactura.nome);
-  
+
             this.facturaProdutoCriada = {
               facturaProdutoID: 0,
               facturaID: res,
@@ -634,7 +638,7 @@ export class UsuarioNormalComponent implements OnInit {
               quantidade: produtoFactura.quantidade,
               subTotal: produtoFactura.subtotal
             };
-  
+
             try {
               const res1 = await this.facturasProdutosServices.createFacturaProduto(this.facturaProdutoCriada).toPromise();
               if (res1) {
@@ -748,7 +752,7 @@ export class UsuarioNormalComponent implements OnInit {
     );
   }
 
-  efectuarCadastroCliente(){
+  efectuarCadastroCliente() {
     if (this.nomeCliente == "") {
       alert("Campo Vazio , Porfavor Digite o Nome do Cliente\n");
       return;
