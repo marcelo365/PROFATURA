@@ -66,7 +66,7 @@ if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 
 app.UseHttpsRedirection();
 
-app.UseCors(); //
+//app.UseCors(); //
 
 app.UseCors("AllowAll");
 
