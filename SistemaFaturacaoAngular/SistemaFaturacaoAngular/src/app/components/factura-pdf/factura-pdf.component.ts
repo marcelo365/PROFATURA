@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
   templateUrl: './factura-pdf.component.html',
   styleUrl: './factura-pdf.component.scss'
 })
-export class FacturaPDFComponent implements OnInit {
+export class FacturaPDFComponent implements OnInit, AfterViewInit {
 
   facturaPDFServices = inject(FacturaPDFService);
   dadosAdmn = inject(DadosAdministradorService);
@@ -38,6 +38,7 @@ export class FacturaPDFComponent implements OnInit {
   constructor() {
   }
 
+
   ngOnInit(): void {
 
     var tipoPagamento = document.getElementsByClassName("tipoPagamento")[0];
@@ -49,19 +50,23 @@ export class FacturaPDFComponent implements OnInit {
       this.nomeCliente = "Consumidor Final";
       this.numeroFactura = 0;
       tipoPagamento.classList.add("ocultar");
-    }else{
+    } else {
       tipoPagamento.classList.remove("ocultar");
     }
 
 
-    this.cr.detectChanges();
-
-    setTimeout(() => {
-      this.gerarPDF();
-    }, 3000);
 
     //this.router.navigateByUrl('/usuarioNormal');
   }
+
+  ngAfterViewInit(): void {
+    this.cr.detectChanges();
+
+    this.gerarPDF();
+
+  }
+
+
 
   inicializarFactura() {
 
@@ -84,9 +89,9 @@ export class FacturaPDFComponent implements OnInit {
     }
 
     var numeroFactura = this.dadosAdmn.getNumeroFactura();
-    if(numeroFactura){
+    if (numeroFactura) {
       this.numeroFactura = numeroFactura;
-    }else{
+    } else {
       this.numeroFactura = 0;
     }
 
@@ -130,11 +135,11 @@ export class FacturaPDFComponent implements OnInit {
         // Largura e altura do PDF
         const pdfWidth = 210;
         const pdfHeight = 297;
-  
+
         const contentDataURL = canvas.toDataURL('image/png');
         let pdf = new jsPDF('p', 'mm', 'a4'); // Criando PDF
         const imgProps = pdf.getImageProperties(contentDataURL);
-  
+
         const pdfHeightImg = (imgProps.height * pdfWidth) / imgProps.width;
         pdf.addImage(contentDataURL, 'PNG', 0, 0, pdfWidth, pdfHeightImg);
         console.log(this.subTotal);

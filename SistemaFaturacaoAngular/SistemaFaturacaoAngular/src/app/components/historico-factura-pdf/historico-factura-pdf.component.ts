@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DadoHistoricoFactura } from '../../models/DadoHistoricoFactura';
 import { DadosHistoricoFacturaService } from '../../services/dados-historico-factura.service';
@@ -13,7 +13,7 @@ import jsPDF from 'jspdf';
   templateUrl: './historico-factura-pdf.component.html',
   styleUrl: './historico-factura-pdf.component.scss'
 })
-export class HistoricoFacturaPDFComponent implements OnInit {
+export class HistoricoFacturaPDFComponent implements OnInit, AfterViewInit {
 
   //injecções de dependencia
   dadosServices = inject(DadosHistoricoFacturaService);
@@ -32,22 +32,20 @@ export class HistoricoFacturaPDFComponent implements OnInit {
 
   //em relatorio de venda por produto
   nomeProduto: string = "";
- 
+
   //
 
   constructor() {
   }
 
   ngOnInit() {
-     this.inicializarDados();
+    this.inicializarDados();
+  }
+
+  ngAfterViewInit(): void {
 
     this.cr.detectChanges();
-
-     // Adiciona um atraso antes de gerar o PDF
-     setTimeout(() => {
-      this.gerarPDF();
-    }, 4000);
-
+    this.gerarPDF();
   }
 
   shouldHideQuantidade(): boolean {
@@ -122,11 +120,11 @@ export class HistoricoFacturaPDFComponent implements OnInit {
         // Largura e altura do PDF
         const pdfWidth = 210;
         const pdfHeight = 297;
-  
+
         const contentDataURL = canvas.toDataURL('image/png');
         let pdf = new jsPDF('p', 'mm', 'a4'); // Criando PDF
         const imgProps = pdf.getImageProperties(contentDataURL);
-  
+
         const pdfHeightImg = (imgProps.height * pdfWidth) / imgProps.width;
         pdf.addImage(contentDataURL, 'PNG', 0, 0, pdfWidth, pdfHeightImg);
         pdf.save('ProFatura.pdf'); // Salvando PDF
