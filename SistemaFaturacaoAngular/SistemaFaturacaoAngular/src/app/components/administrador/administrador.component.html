@@ -21,7 +21,6 @@
                 <li><a (click)="irGestaoFaturas()" [ngClass]="{ 'abaAtiva': abaSeleccionada == 'facturas'}">Facturas</a></li>
                 <li><a (click)="irDashBoard()" [ngClass]="{ 'abaAtiva': abaSeleccionada == 'dashboard'}">DashBoard</a></li>
 
-
             </ul>
             <div class="decoration">
                 <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -331,12 +330,12 @@
         <!--Gestão de Facturas-->
         <div class="gestaoFaturas ocultar">
             <div class="btns">
-                <button (click)="gerarHistoricoTodasFacturas()" class="btnGerar">Gerar histórico de todas as
+                <button (click)="gerarHistoricoTodasFacturas()" class="btnGerar" [disabled]="btnGerarHistoricoTodasFacturas" >Gerar histórico de todas as
                     facturas</button>
 
-                <button (click)="irInserirPeriodos()" class="btnGerar">Gerar histórico de facturas por período</button>
+                <button (click)="irInserirPeriodos()" class="btnGerar" [disabled]="btnGerarHistoricoFacturasPorPeriodo">Gerar histórico de facturas por período</button>
 
-                <button (click)="irInserirProduto()" class="btnGerar alinha">Gerar relatório de vendas por
+                <button (click)="irInserirProduto()" class="btnGerar alinha" [disabled]="btnGerarRelatorioVendasPorProduto">Gerar relatório de vendas por
                     produto</button>
             </div>
 
@@ -362,7 +361,7 @@
                     </div>
 
                     <div id="enviar">
-                        <button (click)="gerarRelatorioPeriodo()" type="submit">OK</button>
+                        <button (click)="gerarRelatorioPeriodo()" type="submit" [disabled]="btnGerarHistoricoFacturasPorPeriodo" >OK</button>
                     </div>
                 </form>
 
@@ -384,7 +383,7 @@
                     </div>
 
                     <div id="enviar">
-                        <button (click)="gerarRelatorioProduto()" type="submit">OK</button>
+                        <button (click)="gerarRelatorioProduto()" type="submit" [disabled]="btnGerarRelatorioVendasPorProduto" >OK</button>
                     </div>
                 </form>
             </div>
