@@ -21,7 +21,7 @@
         margin-left: -8px;
     }
 
-    
+
     .abaAtiva {
         color: #30939a !important;
         font-weight: bold;
@@ -151,6 +151,10 @@
         font-family: sans-serif;
     }
 
+    .sair{
+       
+        font-size: 10px;
+    }
 
     .bodyVisualizarProdutos,
     .bodyVisualizarFuncionarios {
@@ -160,10 +164,10 @@
         align-items: center;
         margin-left: 205px;
         margin-top: -20px;
-        font-size: 90%;
+        font-size: 88%;
     }
 
-    .bodyVisualizarTopCincoProdutosMaisVendidos main.table{
+    .bodyVisualizarTopCincoProdutosMaisVendidos main.table {
         width: 60vw;
         height: 50vh;
         font-size: 14px;
@@ -321,6 +325,10 @@
         margin-right: 10px;
     }
 
+    .btnGerar[disabled] {
+        opacity: 0.8;
+    }
+
     .alinha {
         margin: 10px;
     }
@@ -427,7 +435,7 @@
         margin-top: 65px;
     }
 
-    .dashboard{
+    .dashboard {
         margin-left: 210px;
         margin-top: 300px;
     }
@@ -493,7 +501,8 @@
         background-color: rgb(7, 66, 82);
     }
 
-    #enviar button:hover {
+    #enviar button:hover,
+    #enviar button[disabled] {
         opacity: 0.82;
     }
 
@@ -525,13 +534,12 @@
 }
 
 .clienteFrequente,
-.funcionarioMaiorReceita
-{
+.funcionarioMaiorReceita {
     text-align: center;
     color: #fff;
     margin-bottom: 200px;
     margin-top: -250px;
-   
+
     width: 400px;
     border-radius: 8px;
     padding-top: 12px;
@@ -539,31 +547,29 @@
 }
 
 
-.clienteFrequente{
+.clienteFrequente {
     background-color: #137410;
 }
 
-.funcionarioMaiorReceita{
+.funcionarioMaiorReceita {
     background-color: #df6f0c;
 }
 
 .clienteFrequente h1,
-.funcionarioMaiorReceita h1
-{
+.funcionarioMaiorReceita h1 {
     font-size: 23px;
 }
 
 .clienteFrequente p,
-.funcionarioMaiorReceita p
-{
+.funcionarioMaiorReceita p {
     font-weight: normal;
     font-size: 14px;
 }
 
-.cards{
+.cards {
     display: flex;
 }
 
-.it{
+.it {
     margin-right: 12px;
 }

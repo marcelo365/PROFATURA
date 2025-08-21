@@ -3,8 +3,9 @@
     <nav>
         <div class="logo">
             <a routerLink="/login"><span>Pro</span>Fatura</a>
-            <p (click)="irAlterarSenha()" [ngClass]="{ 'abaAtiva': abaSeleccionada == 'alterarSenha'}" >Alterar Senha</p>
-            <p (click)="irGerarFacturas()" [ngClass]="{ 'abaAtiva': abaSeleccionada == 'gerarFacturas'}">Gerar Facturas</p>
+            <p (click)="irAlterarSenha()" [ngClass]="{ 'abaAtiva': abaSeleccionada == 'alterarSenha'}">Alterar Senha</p>
+            <p (click)="irGerarFacturas()" [ngClass]="{ 'abaAtiva': abaSeleccionada == 'gerarFacturas'}">Gerar Facturas
+            </p>
         </div>
         <p>Username : <span name="userName" id="username">{{userName}}</span></p>
     </nav>
@@ -20,7 +21,8 @@
                     <h1 (click)="inicializar()">Produtos</h1>
 
                     <div class="input-group">
-                        <input type="text" name="procurarProdutoInput" [(ngModel)]="procurarProdutoInput" placeholder="Procure por ID, Nome ou Categoria">
+                        <input type="text" name="procurarProdutoInput" [(ngModel)]="procurarProdutoInput"
+                            placeholder="Procure por ID, Nome ou Categoria">
                         <button id="btnPesquisar" (click)="fazerPesquisa()">OK</button>
                     </div>
 
@@ -48,7 +50,8 @@
                                 <td> {{produto.preco}} </td>
                                 <td> {{produto.categoria}} </td>
                                 <td> {{produto.quantidadeEmEstoque}} </td>
-                                <td><button id="btnAdicionar" (click)="adicionarProdutoFactura(produto.produtoID)">+</button></td>
+                                <td><button id="btnAdicionar"
+                                        (click)="adicionarProdutoFactura(produto.produtoID)">+</button></td>
                             </tr>
                         </tbody>
                     </table>
@@ -81,7 +84,8 @@
                             <td>{{produtoFactura.preco.toFixed(2)}}</td>
                             <td>{{produtoFactura.quantidade}}</td>
                             <td>{{produtoFactura.subtotal.toFixed(2)}} kz</td>
-                            <td> <button id="btnEliminar" (click)="eliminarProdutoFactura(produtoFactura.nome)">-</button> </td>
+                            <td> <button id="btnEliminar"
+                                    (click)="eliminarProdutoFactura(produtoFactura.nome)">-</button> </td>
                         </tr>
 
                         <!---->
@@ -94,11 +98,12 @@
                             <td>{{produtoFactura.preco.toFixed(2)}}</td>
                             <td>{{produtoFactura.quantidade}}</td>
                             <td>{{produtoFactura.subtotal.toFixed(2)}} kz</td>
-                            <td> <button id="btnEliminar" (click)="retornarEliminarProdutoFactura(produtoFactura.nome)">-</button> </td>
+                            <td> <button id="btnEliminar"
+                                    (click)="retornarEliminarProdutoFactura(produtoFactura.nome)">-</button> </td>
                         </tr>
-                        
+
                         <!---->
-                        
+
                     </tbody>
 
                 </table>
@@ -128,7 +133,7 @@
 
                 </table>
 
-                <button class="btnPagar" (click)="irAutenticarCliente()" >Pagar</button>
+                <button class="btnPagar" (click)="irAutenticarCliente()">Pagar</button>
                 <button (click)="gerarFaturaProForma()">Gerar Factura Proforma</button>
 
             </section>
@@ -139,47 +144,48 @@
 
             <form>
                 <h2>Autenticação</h2>
-        
+
                 <label for="">Username : </label>
                 <div>
-                    <input type="text" name="UserNameAdmn" [(ngModel)]="userNameAdmn" placeholder="Digite o seu username" required>
+                    <input type="text" name="UserNameAdmn" [(ngModel)]="userNameAdmn"
+                        placeholder="Digite o seu username" required>
                 </div>
-        
-                <label for="" >Senha : </label>
+
+                <label for="">Senha : </label>
                 <div>
-                    <input type="password" name="senhaAdmn" [(ngModel)]="senhaAdmn" placeholder="Digite a sua senha" required>
+                    <input type="password" name="senhaAdmn" [(ngModel)]="senhaAdmn" placeholder="Digite a sua senha"
+                        required>
                 </div>
-        
+
                 <div id="enviar">
                     <button type="submit" (click)="autenticarRemocao()">Autenticar</button>
                 </div>
-        
-                <div id = "voltar">
+
+                <div id="voltar">
                     <button (click)="voltarFactura()">Voltar</button>
                 </div>
-        
+
             </form>
-        
+
         </div>
 
         <!--Opções Pagamento-->
         <div class="opcoesPagamento form ocultar">
-
             <form>
                 <h2>Opções de Pagamento</h2>
-        
+
                 <div id="enviar">
                     <button class="dinheiro" type="submit" (click)="irPagamentoDinheiro()">Pagamento a Dinheiro</button>
                 </div>
 
                 <div id="enviar">
-                    <button id="multicaixa" type="submit" (click)="efectuarPagamentoMulticaixa()">Pagamento Multicaixa</button>
+                    <button id="multicaixa" type="submit" (click)="efectuarPagamentoMulticaixa()"
+                        [disabled]="btnPagamentoMulticaixa">Pagamento Multicaixa</button>
                 </div>
-        
-                <div id = "voltar" class="divVoltar">
+
+                <div id="voltar" class="divVoltar">
                     <button class="voltarP" (click)="voltarPagar()">Voltar</button>
                 </div>
-        
             </form>
         </div>
 
@@ -188,16 +194,18 @@
             <form>
                 <h2>Pagamento a Dinheiro</h2>
 
-                <label for="" >Quantia : </label>
+                <label for="">Quantia : </label>
                 <div>
-                    <input type="number" name="quantiaPagamentoDinheiro" [(ngModel)]="quantiaPagamentoDinheiro" placeholder="Digite a quantia" required>
+                    <input type="number" name="quantiaPagamentoDinheiro" [(ngModel)]="quantiaPagamentoDinheiro"
+                        placeholder="Digite a quantia" required>
                 </div>
 
                 <div id="enviar">
-                    <button class="dinheiro" type="submit" (click)="efectuarPagamentoDinheiro()">OK</button>
+                    <button class="dinheiro" type="submit" (click)="efectuarPagamentoDinheiro()"
+                        [disabled]="btnPagamentoDinheiro">OK</button>
                 </div>
-        
-                <div id = "voltar" class="divVoltar">
+
+                <div id="voltar" class="divVoltar">
                     <button class="voltarP" (click)="voltarPagamentoDinheiro()">Voltar</button>
                 </div>
             </form>
@@ -207,24 +215,26 @@
         <div class="autenticarCliente form ocultar">
             <form>
                 <h2>Autenticação de Cliente</h2>
-        
+
                 <label for="">Telemóvel : </label>
                 <div>
-                    <input type="number" name="telemovelCliente" [(ngModel)]="telemovelCliente" placeholder="Digite o telemóvel do cliente" required>
+                    <input type="number" name="telemovelCliente" [(ngModel)]="telemovelCliente"
+                        placeholder="Digite o telemóvel do cliente" required>
                 </div>
-        
+
                 <div id="enviar">
                     <button type="submit" (click)="autenticarCliente()">Autenticar</button>
                 </div>
-        
-                <div id = "voltar">
+
+                <div id="voltar">
                     <button (click)="voltarFacturaCliente()">Voltar</button>
                 </div>
 
                 <div id="links">
-                    <p>Cliente não possui registo ? <a id="linkCadastrar" (click)="irCadastrarCliente()">Criar um registo</a></p>
+                    <p>Cliente não possui registo ? <a id="linkCadastrar" (click)="irCadastrarCliente()">Criar um
+                            registo</a></p>
                 </div>
-        
+
             </form>
         </div>
 
@@ -235,22 +245,24 @@
 
                 <label for="">Nome Completo : </label>
                 <div>
-                    <input type="text" name="nomeCliente" [(ngModel)]="nomeCliente" placeholder="Digite o nome completo do cliente" required>
+                    <input type="text" name="nomeCliente" [(ngModel)]="nomeCliente"
+                        placeholder="Digite o nome completo do cliente" required>
                 </div>
-        
+
                 <label for="">Telemóvel : </label>
                 <div>
-                    <input type="number" name="telemovelCliente" [(ngModel)]="telemovelCliente" placeholder="Digite o telemóvel do cliente" required>
+                    <input type="number" name="telemovelCliente" [(ngModel)]="telemovelCliente"
+                        placeholder="Digite o telemóvel do cliente" required>
                 </div>
-        
+
                 <div id="enviar">
-                    <button type="submit" (click)="efectuarCadastroCliente()" >Cadastrar Cliente</button>
+                    <button type="submit" (click)="efectuarCadastroCliente()">Cadastrar Cliente</button>
                 </div>
-        
-                <div id = "voltar">
+
+                <div id="voltar">
                     <button (click)="voltarAutenticarCliente()">Voltar</button>
                 </div>
-        
+
             </form>
         </div>
 
@@ -268,8 +280,8 @@
 
                     <label for="">Nova senha : </label>
                     <div>
-                        <input type="text" placeholder="Digite a nova senha" name="novaSenha"
-                            [(ngModel)]="novaSenha" required>
+                        <input type="text" placeholder="Digite a nova senha" name="novaSenha" [(ngModel)]="novaSenha"
+                            required>
                     </div>
 
                     <label for="">Confirmação da nova senha : </label>

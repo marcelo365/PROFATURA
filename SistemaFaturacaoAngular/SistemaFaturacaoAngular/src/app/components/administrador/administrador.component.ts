@@ -37,6 +37,11 @@ export class AdministradorComponent implements OnInit {
   userName: string = this.dadosAdministrador.getUserName();
   abaSeleccionada: string = "";
 
+  //btnsDesativados
+  btnGerarHistoricoTodasFacturas = false;
+  btnGerarHistoricoFacturasPorPeriodo = false;
+  btnGerarRelatorioVendasPorProduto = false;
+
   //cadastro de administradores
   nomeCompletoCadastroAdministrador: string = "";
   emailCadastroAdministrador: string = "";
@@ -637,6 +642,8 @@ export class AdministradorComponent implements OnInit {
       return;
     }
 
+    alert("Aguarde um momento enquanto se faz o cadastro");
+
     this.utilizadorCriadoCadastroAdministrador = {
       userID: 0,
       bilheteIdentidade: (tipoUser == 1) ? this.bilheteIdentidadeCadastroAdministrador : this.bilheteIdentidade,
@@ -693,6 +700,8 @@ export class AdministradorComponent implements OnInit {
   }
 
   fazerPesquisa() {
+
+    alert("Aguarde um momento enquanto se efectua a pesquisa");
 
     if (!(this.procurarProdutoInput == "")) {
 
@@ -752,6 +761,8 @@ export class AdministradorComponent implements OnInit {
 
   async fazerPesquisaFuncionario() {
 
+    alert("Aguarde um momento enquanto a pesquisa é efectuada");
+
     if (this.procurarFuncionarioInput != null) {
 
       try {
@@ -771,6 +782,8 @@ export class AdministradorComponent implements OnInit {
   }
 
   async pesquisarCliente() {
+
+    alert("Aguarde um momento enquanto a pesquisa é efectuada");
 
     if (this.procurarClienteInput != null) {
 
@@ -822,9 +835,10 @@ export class AdministradorComponent implements OnInit {
       return;
     }
 
+    alert("Aguarde um momento enquanto o produto é cadastrado");
+
     this.dataDeCadastroProduto = this.formatarDataParaSQL(new Date());
     var select = document.getElementById("categoriasSelect");
-
 
 
     this.produtoCriado = {
@@ -988,6 +1002,8 @@ export class AdministradorComponent implements OnInit {
       return;
     }
 
+    alert("Aguarde um momento enquanto a edição é feita");
+
     this.produtoAtualizado = {
       produtoID: this.produtoID,
       nome: this.nomeProduto,
@@ -1028,6 +1044,8 @@ export class AdministradorComponent implements OnInit {
       return;
     }
 
+    alert("Aguarde um momento enquanto se faz a edição do funcionário");
+
     if (this.utilizadorCriadoCadastroAdministrador) {
 
       this.utilizadorCriadoCadastroAdministrador = {
@@ -1065,6 +1083,8 @@ export class AdministradorComponent implements OnInit {
       return;
     }
 
+    alert("Aguarde um momento enquanto se faz a edição do cliente");
+
     if (this.clienteCriado) {
 
       this.clienteCriado = {
@@ -1090,6 +1110,8 @@ export class AdministradorComponent implements OnInit {
 
   eliminarProduto(id: number) {
 
+    alert("Aguarde um momento enquanto se faz a eliminação");
+
     this.produtosServices.deleteProduto(id).subscribe(res => {
       alert("Produto removido com Sucesso");
       this.ngOnInit();
@@ -1102,6 +1124,9 @@ export class AdministradorComponent implements OnInit {
   }
 
   eliminarFuncionario(id: number) {
+
+    alert("Aguarde um momento enquanto se faz a eliminação");
+
     this.utilizadoresService.deleteUtilizador(id).subscribe(res => {
       alert("Funcionário removido com Sucesso");
       this.inicializarListaFuncionarios();
@@ -1114,6 +1139,9 @@ export class AdministradorComponent implements OnInit {
   }
 
   eliminarCliente(id: number) {
+
+    alert("Aguarde um momento enquanto se faz a eliminação");
+
     this.clientesServices.deleteCliente(id).subscribe(res => {
       alert("Cliente removido com Sucesso");
       this.inicializarListaClientes();
@@ -1140,6 +1168,8 @@ export class AdministradorComponent implements OnInit {
       return;
     }
 
+    alert("Aguarde um momento enquanto se faz o cadastro do cliente");
+
     this.clienteCriado = {
       clienteID: 0,
       nome: this.nomeCliente,
@@ -1161,6 +1191,11 @@ export class AdministradorComponent implements OnInit {
 
   async gerarHistoricoTodasFacturas() {
 
+    alert("Aguarde um momento enquanto gera o histórico em pdf");
+    this.btnGerarHistoricoTodasFacturas = true;
+    this.btnGerarHistoricoFacturasPorPeriodo = true;
+    this.btnGerarRelatorioVendasPorProduto = true;
+
     this.arrayHistoricoFacturas = [];
 
     var nomeFuncionario = this.dadosAdministrador.getUtilizador()?.nomeCompleto;
@@ -1179,35 +1214,39 @@ export class AdministradorComponent implements OnInit {
         this.facturasArmazenadas = res;
       }
 
-      this.facturasArmazenadas.forEach(async factura => {
-
+      const promises = this.facturasArmazenadas.map(async factura => {
         const rescli = await this.clientesServices.getCliente(factura.clienteID).toPromise();
         const resFunc = await this.utilizadoresService.getUtilizador(factura.userID).toPromise();
 
-        if ((rescli != null) && (resFunc != null)) {
-
-
-          this.dadoHistoricoCriado = {
+        if (rescli && resFunc) {
+          return {
             dataFatura: factura.dataFactura,
             numeroFatura: factura.facturaID,
-            nomeCliente: rescli?.nome,
+            nomeCliente: rescli.nome,
             nomeFuncionario: resFunc.nomeCompleto,
             BIFuncionario: resFunc.bilheteIdentidade,
             telemovelCliente: rescli.telemovel,
             quantidade: 0,
             total: factura.total
-          }
-
-          this.arrayHistoricoFacturas.push(this.dadoHistoricoCriado);
+          };
         }
-
+        return null;
       });
 
-      //passar para o serviço
-      this.dadosHistoricoServices.dadosHistoricosFaturas = this.arrayHistoricoFacturas;
-      //
+      // espera todas as promises terminarem
+      const resultados = await Promise.all(promises);
 
+      // remove os null
+      this.arrayHistoricoFacturas = resultados.filter(x => x !== null) as any[];
+
+      // só aqui navega
+      this.dadosHistoricoServices.dadosHistoricosFaturas = this.arrayHistoricoFacturas;
+
+      this.btnGerarHistoricoTodasFacturas = false;
+      this.btnGerarHistoricoFacturasPorPeriodo = false;
+      this.btnGerarRelatorioVendasPorProduto = false;
       this.router.navigateByUrl('/facturaHistorico');
+
 
     } catch (err) {
       console.log("Facturas nao retornadas");
@@ -1235,7 +1274,10 @@ export class AdministradorComponent implements OnInit {
       return;
     }
 
-
+    alert("Aguarde um momento enquanto gera o histórico em pdf");
+    this.btnGerarHistoricoFacturasPorPeriodo = true;
+    this.btnGerarHistoricoTodasFacturas = true;
+    this.btnGerarRelatorioVendasPorProduto = true;
 
     /////
     /////
@@ -1259,36 +1301,40 @@ export class AdministradorComponent implements OnInit {
         this.facturasArmazenadas = res;
       }
 
-      console.log(res);
-
-      this.facturasArmazenadas.forEach(async factura => {
-
+      // em vez de forEach, usa map para criar um array de Promises
+      const promises = this.facturasArmazenadas.map(async factura => {
         const rescli = await this.clientesServices.getCliente(factura.clienteID).toPromise();
         const resFunc = await this.utilizadoresService.getUtilizador(factura.userID).toPromise();
 
-        if ((rescli != null) && (resFunc != null)) {
-
-
-          this.dadoHistoricoCriado = {
+        if (rescli && resFunc) {
+          return {
             dataFatura: factura.dataFactura,
             numeroFatura: factura.facturaID,
-            nomeCliente: rescli?.nome,
+            nomeCliente: rescli.nome,
             nomeFuncionario: resFunc.nomeCompleto,
             BIFuncionario: resFunc.bilheteIdentidade,
             telemovelCliente: rescli.telemovel,
             quantidade: 0,
             total: factura.total
-          }
-
-          this.arrayHistoricoFacturas.push(this.dadoHistoricoCriado);
+          };
         }
-
+        return null;
       });
 
-      //passar para o serviço
-      this.dadosHistoricoServices.dadosHistoricosFaturas = this.arrayHistoricoFacturas;
-      //
+      // espera todas as promises terminarem
+      const resultados = await Promise.all(promises);
 
+      // remove os null
+      this.arrayHistoricoFacturas = resultados.filter(x => x !== null) as any[];
+
+      // passar para o serviço
+      this.dadosHistoricoServices.dadosHistoricosFaturas = this.arrayHistoricoFacturas;
+
+      // só aqui navega
+
+      this.btnGerarHistoricoFacturasPorPeriodo = false;
+      this.btnGerarHistoricoTodasFacturas = false;
+      this.btnGerarRelatorioVendasPorProduto = false;
       this.router.navigateByUrl('/facturaHistorico');
 
     } catch (err) {
@@ -1298,7 +1344,6 @@ export class AdministradorComponent implements OnInit {
     ////
     ///
     ///
-
   }
 
   async gerarRelatorioProduto() {
@@ -1309,6 +1354,11 @@ export class AdministradorComponent implements OnInit {
       alert("Campo Vazio , Porfavor digite o Nome do produto\n");
       return;
     }
+
+    alert("Aguarde um momento enquanto gera o histórico em pdf");
+    this.btnGerarRelatorioVendasPorProduto = true;
+    this.btnGerarHistoricoTodasFacturas = true;
+    this.btnGerarHistoricoFacturasPorPeriodo = true;
 
     var nomeFuncionario = this.dadosAdministrador.getUtilizador()?.nomeCompleto;
     var BIFuncionario = this.dadosAdministrador.getUtilizador()?.bilheteIdentidade;
@@ -1330,17 +1380,16 @@ export class AdministradorComponent implements OnInit {
 
         if (resFacturasProdutos != null) {
 
-          resFacturasProdutos.forEach(async facturaProduto => {
-
+          // cria um array de Promises
+          const promises = resFacturasProdutos.map(async facturaProduto => {
             const resFactura = await this.facturasServices.getFactura(facturaProduto.facturaID).toPromise();
-            if (resFactura != null) {
 
+            if (resFactura != null) {
               const resUtilizador = await this.utilizadoresService.getUtilizador(resFactura.userID).toPromise();
               const resCliente = await this.clientesServices.getCliente(resFactura.clienteID).toPromise();
 
-              if ((resCliente != null) && (resUtilizador != null)) {
-
-                this.dadoHistoricoCriado = {
+              if (resCliente && resUtilizador) {
+                return {
                   numeroFatura: resFactura.facturaID,
                   dataFatura: resFactura.dataFactura,
                   nomeFuncionario: resUtilizador.nomeCompleto,
@@ -1349,38 +1398,45 @@ export class AdministradorComponent implements OnInit {
                   BIFuncionario: resUtilizador.bilheteIdentidade,
                   quantidade: facturaProduto.quantidade,
                   total: facturaProduto.subTotal
-                }
-
-                //
-                this.arrayHistoricoFacturas.push(this.dadoHistoricoCriado);
-                //
-
+                };
               }
             }
+
+            return null;
           });
 
-          //passar para o serviço
+          // espera todas terminarem
+          const resultados = await Promise.all(promises);
+
+          // remove os null
+          this.arrayHistoricoFacturas = resultados.filter(x => x !== null) as any[];
+
+          // passar para o serviço
           this.dadosHistoricoServices.dadosHistoricosFaturas = this.arrayHistoricoFacturas;
-          //
 
+          // só aqui navega
+          this.btnGerarRelatorioVendasPorProduto = false;
+          this.btnGerarHistoricoTodasFacturas = false;
+          this.btnGerarHistoricoFacturasPorPeriodo = false;
           this.router.navigateByUrl('/facturaHistorico');
-
-          console.log(this.arrayHistoricoFacturas);
-
         }
 
       } else {
         alert("Produto não encontrado");
+        this.btnGerarRelatorioVendasPorProduto = false;
+        this.btnGerarHistoricoTodasFacturas = false;
+        this.btnGerarHistoricoFacturasPorPeriodo = false;
         console.log("Produto não encontrado");
       }
     } catch (err) {
       alert("Produto não encontrado");
+      this.btnGerarRelatorioVendasPorProduto = false;
+      this.btnGerarHistoricoTodasFacturas = false;
+      this.btnGerarHistoricoFacturasPorPeriodo = false;
       console.log("Produto não encontrado");
     }
 
     this.nomeProdutoFactura == "";
-
-
   }
 
   mudarSenha() {
@@ -1400,6 +1456,9 @@ export class AdministradorComponent implements OnInit {
       alert("Nova senha diferente da senha confirmada , verifique porfavor");
       return;
     }
+
+    alert("Aguarde um momento enquanto se faz a mudança");
+
 
 
     const userID = this.dadosAdministrador.getUtilizador()?.userID;

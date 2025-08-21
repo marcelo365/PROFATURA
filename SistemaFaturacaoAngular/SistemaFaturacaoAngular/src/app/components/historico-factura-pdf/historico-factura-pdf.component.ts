@@ -43,7 +43,6 @@ export class HistoricoFacturaPDFComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-
     this.cr.detectChanges();
     this.gerarPDF();
   }
@@ -115,19 +114,24 @@ export class HistoricoFacturaPDFComponent implements OnInit, AfterViewInit {
     var facturaElement = document.getElementById("print-area");
 
     if (facturaElement) {
-
-      html2canvas(facturaElement).then((canvas) => {
-        // Largura e altura do PDF
-        const pdfWidth = 210;
+      html2canvas(facturaElement, {
+        scale: 2, // reduzir resolução (default é 4)
+        useCORS: true
+      }).then((canvas) => {
+        const pdfWidth = 210;  // A4 em mm
         const pdfHeight = 297;
 
-        const contentDataURL = canvas.toDataURL('image/png');
-        let pdf = new jsPDF('p', 'mm', 'a4'); // Criando PDF
-        const imgProps = pdf.getImageProperties(contentDataURL);
+        const contentDataURL = canvas.toDataURL('image/jpeg', 0.6);
+        // 👆 usa JPEG com compressão (0.6 = 60% qualidade)
 
+        let pdf = new jsPDF('p', 'mm', 'a4');
+
+        const imgProps = pdf.getImageProperties(contentDataURL);
         const pdfHeightImg = (imgProps.height * pdfWidth) / imgProps.width;
-        pdf.addImage(contentDataURL, 'PNG', 0, 0, pdfWidth, pdfHeightImg);
-        pdf.save('ProFatura.pdf'); // Salvando PDF
+
+        pdf.addImage(contentDataURL, 'JPEG', 0, 0, pdfWidth, pdfHeightImg);
+
+        pdf.save('ProFatura.pdf');
       });
     }
   }

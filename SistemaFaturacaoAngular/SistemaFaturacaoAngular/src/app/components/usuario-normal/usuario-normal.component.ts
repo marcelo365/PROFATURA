@@ -48,6 +48,10 @@ export class UsuarioNormalComponent implements OnInit {
   userName: string = this.dadosAdministrador.getUserName();
   abaSeleccionada: string = "gerarFacturas";
 
+  //btnsDesativados
+  btnPagamentoMulticaixa = false;
+  btnPagamentoDinheiro = false;
+
   //visualizar Produtos
   produtosDisponiveis: Array<Produto> = [];
   produtosVisualizar: Array<Produto> = [];
@@ -117,8 +121,6 @@ export class UsuarioNormalComponent implements OnInit {
     var cadastrarCliente = document.getElementsByClassName("cadastrarCliente")[0];
 
 
-
-
     bodyVisualizarProdutos.classList.add("ocultar");
     factura.classList.add("ocultar");
     alterarSenha.classList.remove("ocultar");
@@ -127,7 +129,6 @@ export class UsuarioNormalComponent implements OnInit {
     pagamentoDinheiro.classList.add("ocultar");
     autenticarCliente.classList.add("ocultar");
     cadastrarCliente.classList.add("ocultar");
-
   }
 
   irGerarFacturas() {
@@ -151,13 +152,7 @@ export class UsuarioNormalComponent implements OnInit {
     pagamentoDinheiro.classList.add("ocultar");
     autenticarCliente.classList.add("ocultar");
     cadastrarCliente.classList.add("ocultar");
-
   }
-
-
-
-
-
 
   resetarListaProdutos() {
     //this.produtosDisponiveis = [];
@@ -211,16 +206,13 @@ export class UsuarioNormalComponent implements OnInit {
             this.produtosVisualizar.push(produto);
             jaEncontrado = true;
           }
-
         });
 
         if (!jaEncontrado) {
           alert("Produtos(s) não Encontrado(s)");
           this.resetarListaProdutos();
         }
-
       }
-
     }
   }
 
@@ -369,6 +361,8 @@ export class UsuarioNormalComponent implements OnInit {
       alert("Campo Vazio , Porfavor Digite a sua Senha\n");
       return;
     }
+
+    alert("Aguarde um momento enquanto se faz a autenticação");
 
     this.utilizadoresServices.getUtilizadorByUsername(this.userNameAdmn).subscribe(res => {
 
@@ -548,6 +542,7 @@ export class UsuarioNormalComponent implements OnInit {
   }
 
   async efectuarPagamentoDinheiro() {
+
     if (this.quantiaPagamentoDinheiro == null) {
       alert("Campo Vazio , Porfavor digite a quantia a pagar\n");
       return;
@@ -559,54 +554,72 @@ export class UsuarioNormalComponent implements OnInit {
       return;
     }
 
+    alert("Aguarde um momento enquanto se gera a factura");
+    this.btnPagamentoDinheiro = true;
+    this.btnPagamentoMulticaixa = true;
+
+
     this.setarDadosAdmn();
     this.dadosAdministrador.setOpcaoImprimir(1);
     this.dadosAdministrador.setTroco(this.quantiaPagamentoDinheiro - (this.totalProdutos ? this.totalProdutos : 0));
     this.dadosAdministrador.setTipoPagamento("Dinheiro");
 
 
-    this.atualizarStockProdutosDisponiveis();
+    await this.atualizarStockProdutosDisponiveis();
     await this.criarFacturasProdutos();
     this.dadosAdministrador.setNumeroFactura(this.numeroFatura ? this.numeroFatura : 0);
 
+    this.btnPagamentoDinheiro = false;
+    this.btnPagamentoMulticaixa = false;
     this.router.navigateByUrl('/factura');
   }
 
   async efectuarPagamentoMulticaixa() {
+
+    alert("Aguarde um momento enquanto se gera a factura");
+    this.btnPagamentoMulticaixa = true;
+    this.btnPagamentoDinheiro = true;
+
     this.setarDadosAdmn();
     this.dadosAdministrador.setOpcaoImprimir(2);
     this.dadosAdministrador.setTroco(0);
     this.dadosAdministrador.setTipoPagamento("Multicaixa");
-    //
-    this.atualizarStockProdutosDisponiveis();
+
+    // 1. Atualizar stock (espera todos terminarem)
+    await this.atualizarStockProdutosDisponiveis();
+
+    // 2. Criar facturas e facturasProdutos
     await this.criarFacturasProdutos();
-    //
+
+    // 3. Só aqui define número da factura
     this.dadosAdministrador.setNumeroFactura(this.numeroFatura ? this.numeroFatura : 0);
+
+    this.btnPagamentoMulticaixa = false;
+    this.btnPagamentoDinheiro = false;
+
+    // 4. Agora pode navegar
     this.router.navigateByUrl('/factura');
   }
 
-  atualizarStockProdutosDisponiveis() {
-    this.produtosDisponiveis.forEach(produtoDisponivel => {
-      this.produtosServices.updateProduto(produtoDisponivel).subscribe(res => {
-        if (res) {
-          console.log("produtos atualizados");
-        }
-      },
-        err => {
-          console.log("produtos não atualizados");
-        }
-      );
-    });
+  async atualizarStockProdutosDisponiveis() {
+    const promises = this.produtosDisponiveis.map(produtoDisponivel =>
+      this.produtosServices.updateProduto(produtoDisponivel).toPromise()
+    );
+
+    try {
+      await Promise.all(promises);
+      console.log("Todos os produtos atualizados");
+    } catch (err) {
+      console.log("Algum produto não foi atualizado", err);
+    }
   }
 
   async criarFacturasProdutos() {
+    const idUsuario = this.dadosAdministrador.getUtilizador()?.userID;
+    const idCliente = this.clienteCriado?.clienteID;
 
-    var idUsuario = this.dadosAdministrador.getUtilizador()?.userID;
-    var idCliente = this.clienteCriado?.clienteID;
-
-    if ((idUsuario != null) && (this.totalProdutos != null) && (idCliente != null)) {
-
-      //criar factura primeiro
+    if (idUsuario != null && this.totalProdutos != null && idCliente != null) {
+      // Criar factura primeiro
       this.facturaCriada = {
         facturaID: 0,
         userID: idUsuario,
@@ -617,84 +630,34 @@ export class UsuarioNormalComponent implements OnInit {
 
       try {
         const res = await this.facturasServices.createFactura(this.facturaCriada).toPromise();
-        console.log(res);
-        if (res) {
+        if (res && res !== -1) {
           this.numeroFatura = res;
-        }
-
-        this.cr.detectChanges();
-
-        if ((res != -1) && res) {
           console.log("Factura Criada");
 
-          // criar as facturasProdutos
-          for (const produtoFactura of this.produtosFactura) {
+          // Criar todas as facturasProdutos em paralelo
+          const promises = this.produtosFactura.map(async produtoFactura => {
             const idProduto = await this.getProdutoIDByProdutoFactura(produtoFactura.nome);
 
-            this.facturaProdutoCriada = {
+            const facturaProdutoCriada = {
               facturaProdutoID: 0,
               facturaID: res,
-              produtoID: idProduto ? idProduto : 0,
+              produtoID: idProduto ?? 0,
               quantidade: produtoFactura.quantidade,
               subTotal: produtoFactura.subtotal
             };
 
-            try {
-              const res1 = await this.facturasProdutosServices.createFacturaProduto(this.facturaProdutoCriada).toPromise();
-              if (res1) {
-                console.log("FacturaProduto Criada");
-              }
-            } catch (err) {
-              console.log("FacturaProduto Não Criada");
-            }
-          }
-        }
-      } catch (err) {
-        console.log("Factura não criada");
-      }
-
-
-      /*this.facturasServices.createFactura(this.facturaCriada).subscribe(res => {
-        console.log(res);
-        this.numeroFatura = res;
-        this.cr.detectChanges();
-        if (res != -1) {
-          console.log("Factura Criada");
-          
-          //criar as facturasProdutos
-
-          this.produtosFactura.forEach(async produtoFactura => {
-
-            var idProduto = await this.getProdutoIDByProdutoFactura(produtoFactura.nome);
-
-            this.facturaProdutoCriada = {
-              facturaProdutoID: 0,
-              facturaID: res,
-              produtoID: idProduto ? idProduto : 0,
-              quantidade: produtoFactura.quantidade,
-              subTotal: produtoFactura.subtotal
-            }
-
-            this.facturasProdutosServices.createFacturaProduto(this.facturaProdutoCriada).subscribe(res1 => {
-              if (res1) {
-                console.log("FacturaProduto Criada");
-              }
-            },
-              err => {
-                console.log("FacturaProduto Não Criada");
-              }
-            );
+            return this.facturasProdutosServices.createFacturaProduto(facturaProdutoCriada).toPromise();
           });
 
-          //
-
+          await Promise.all(promises);
+          console.log("Todos os FacturaProdutos criados");
         }
-      },
-        err => {
-          console.log("Factura não criada");
-        });*/
+      } catch (err) {
+        console.log("Erro ao criar factura ou facturasProdutos", err);
+      }
     }
   }
+
 
   async getProdutoIDByProdutoFactura(nome: string): Promise<number | null> {
     try {
@@ -737,6 +700,8 @@ export class UsuarioNormalComponent implements OnInit {
       return;
     }
 
+    alert("Aguarde um momento enquanto se faz a autenticação");
+
     this.clientesServices.getClienteByTelemovel(this.telemovelCliente).subscribe(res => {
       if (res) {
         alert("Autenticação feita com sucesso\n");
@@ -766,6 +731,8 @@ export class UsuarioNormalComponent implements OnInit {
       alert("Porfavor digite um número inteiro para o telemovel");
       return;
     }
+
+    alert("Aguarde um momento enquanto se faz o cadastro do cliente");
 
     this.clienteCriado = {
       clienteID: 0,
@@ -805,6 +772,7 @@ export class UsuarioNormalComponent implements OnInit {
       return;
     }
 
+    alert("Aguarde um momento enquanto se faz a mudança");
 
     const userID = this.dadosAdministrador.getUtilizador()?.userID;
     const BI = this.dadosAdministrador.getUtilizador()?.bilheteIdentidade;

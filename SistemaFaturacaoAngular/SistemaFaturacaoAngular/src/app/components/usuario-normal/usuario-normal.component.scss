@@ -449,6 +449,7 @@
     }
 
     #enviar button:hover,
+    #enviar button[disabled],
     #voltar button:hover {
         opacity: 0.82;
     }
