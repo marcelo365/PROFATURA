@@ -11,11 +11,11 @@ export class FacturasProdutosService {
 
   constructor() { }
   createFacturaProduto(facturaProduto : FacturaProduto){
-    return this.httpClient.post<boolean>("https://profatura.onrender.com/CreateFacturaProduto" , facturaProduto);
+    return this.httpClient.post<boolean>("https://profatura-ewi0.onrender.com/CreateFacturaProduto" , facturaProduto);
   }
 
   getFacturasProdutosByProduto(id : number){
-    return this.httpClient.get<Array<FacturaProduto>>(`https://profatura.onrender.com/GetFacturasProdutosByProduto?id=${id}`);
+    return this.httpClient.get<Array<FacturaProduto>>(`https://profatura-ewi0.onrender.com/GetFacturasProdutosByProduto?id=${id}`);
   }
 
 }
